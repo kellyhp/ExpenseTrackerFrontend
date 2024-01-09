@@ -1,0 +1,125 @@
+@use 'app/(pages)/_globals/mixins';
+
+.container{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    border-radius: var(--b-radius);
+    box-shadow: var(--b-shadow);
+    padding: 30px 30px;
+    @include mixins.tablet {
+        width: 310px;
+        padding: 20px 20px;
+    }
+    @include mixins.phone {
+        margin-top: 30px;
+    }
+}
+
+.titles{
+    flex-direction: row;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    @include mixins.tablet{
+        display: none;
+    }
+}
+
+.spaceName{
+    width:200px;
+    color: var(--text-light);
+}
+
+.Name{
+    width: 200px;
+    @include mixins.tablet {
+        width:90px;
+        font-size: 14px;
+    }
+}
+
+.spaceType{
+    width: 150px;
+    color: var(--text-light);
+}
+
+.Type{
+    color: var(--text-light);
+    width: 150px;
+    @include mixins.tablet{
+        width: 90px;
+        font-size: 14px;
+    }
+}
+
+.spaceDate{
+    width: 100px;
+    color: var(--text-light);
+}
+
+.Date{
+    color: var(--text-light);
+    width: 100px;
+    @include mixins.tablet{
+        width: 80px;
+        font-size: 14px;
+    }
+}
+
+.spaceAmount{
+    width: 70px;
+    display: flex;
+    justify-content: end;
+    color: var(--text-light);
+}
+
+.Amount{
+    width: 70px;
+    display: flex;
+    justify-content: end;
+    justify-content: end;
+    font-size: var(--font-quicksand);
+    @include mixins.tablet{
+        width: 60px;
+        font-size: 14px;
+    }
+}
+
+.actionContainer{
+    padding: 10px 0px;
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid #ECECEC;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ED_Button{
+    padding: 0px 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    cursor: pointer;
+    @include mixins.tablet{
+        gap: 3px;
+        padding: auto;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+}
+
+.ColRow{
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    @include mixins.tablet{
+        flex-direction: column;
+        gap: 10px;
+    }
+}

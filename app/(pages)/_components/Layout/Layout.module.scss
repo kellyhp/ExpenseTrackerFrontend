@@ -1,0 +1,29 @@
+@use 'app/(pages)/_globals/mixins';
+
+.mains{
+    position: fixed;
+    margin-left: 22%;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 4%;
+    @include mixins.tablet {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0%;
+        align-items: center;
+        padding-bottom: 30%;
+    }
+}
+
+.ColRow{
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    gap: 2%;
+    @include mixins.tablet{
+        gap: 5%;
+        flex-direction: column;
+        justify-items: center;
+    }
+}

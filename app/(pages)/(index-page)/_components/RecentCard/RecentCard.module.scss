@@ -1,0 +1,111 @@
+@use 'app/(pages)/_globals/mixins';
+
+.container{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    border-radius: var(--b-radius);
+    box-shadow: var(--b-shadow);
+    padding: 30px 30px;
+    @include mixins.tablet {
+        width: 310px;
+        padding: 20px 20px;
+    }
+    @include mixins.phone {
+        margin-top: 30px;
+    }
+}
+
+.titles{
+    flex-direction: row;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.spaceName{
+    width:200px;
+    color: var(--text-light);
+    @include mixins.tablet {
+        width:60px;
+        font-size: 14px;
+    }
+}
+
+.Name{
+    width: 200px;
+    @include mixins.tablet {
+        width:60px;
+        font-size: 14px;
+    }
+}
+
+.spaceType{
+    width: 150px;
+    color: var(--text-light);
+    @include mixins.tablet {
+        width: 70px;
+        font-size: 14px;
+    }
+}
+
+.Type{
+    color: var(--text-light);
+    width: 150px;
+    @include mixins.tablet{
+        width: 70px;
+        font-size: 14px;
+    }
+}
+
+.spaceDate{
+    width: 100px;
+    color: var(--text-light);
+    @include mixins.tablet {
+        width: 80px;
+        font-size: 14px;
+    }
+}
+
+.Date{
+    color: var(--text-light);
+    width: 100px;
+    @include mixins.tablet{
+        width: 80px;
+        font-size: 14px;
+    }
+}
+
+.spaceAmount{
+    width: 70px;
+    display: flex;
+    justify-content: end;
+    color: var(--text-light);
+    @include mixins.tablet{
+        width: 60px;
+        font-size: 14px;
+    }
+}
+
+.Amount{
+    width: 70px;
+    display: flex;
+    justify-content: end;
+    justify-content: end;
+    font-size: var(--font-quicksand);
+    @include mixins.tablet{
+        width: 60px;
+        font-size: 14px;
+    }
+}
+
+.actionContainer{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #ECECEC;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

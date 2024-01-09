@@ -1,0 +1,49 @@
+@use 'app/(pages)/_globals/mixins';
+
+.form{
+    height: fit-content;
+    margin-top: 2%;
+    box-shadow: var(--b-shadow);
+    border-radius: var(--b-radius);
+    width: 350px;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    @include mixins.tablet{
+        width: 300px;
+    }
+}
+
+.formTitle{
+    margin-bottom: 5%;
+}
+
+.input{
+    font-size: 16px;
+    box-shadow: var(--f-shadow);
+    border-radius: var(--f-radius);
+    text-align: start;
+    height: 50px;
+    width: 100%;
+    border: none;
+    padding: 0px 10px;
+}
+
+.submit{
+    font-size: 16px;
+    color: var(--light-background);
+    background-color: var(--primary);
+    height: 50px;
+    border: none;
+    border-radius: var(--f-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover{
+    color: var(--primary);
+    background-color: var(--light-background);
+    border: 1px solid var(--primary);
+}

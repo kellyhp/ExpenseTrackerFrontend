@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Overview",
+      "slug": "/"
+    },
+    {
+      "name": "Transactions",
+      "slug": "/transactions"
+    },
+    {
+      "name": "Allocations",
+      "slug": "/allocations"
+    },
+    {
+      "name": "Incomes",
+      "slug": "/incomes"
+    },
+    {
+      "name": "Sign Out",
+      "slug": "/sign-out"
+    }
+  ]

@@ -1,0 +1,39 @@
+@use 'app/(pages)/_globals/mixins';
+
+.paragraph{
+    color: var(--text-secondary);
+}
+
+.bal{
+    color: var(--blue);
+    font-family: var(--font-quicksand);
+}
+
+.in{
+    color:var(--green);
+    font-family: var(--font-quicksand);
+}
+
+.out{
+    color: var(--red);
+    font-family: var(--font-quicksand);
+}
+
+.TotalCard{
+    width: 350px;
+    height: 320px;
+    border-radius: var(--b-radius);
+    box-shadow: var(--b-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include mixins.tablet {
+        width: 300px;
+        height: 270px;
+    }
+}
+
+.Information{
+    padding-left: 3em;
+}
