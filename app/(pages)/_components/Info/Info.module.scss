@@ -1,0 +1,52 @@
+@use 'app/(pages)/_globals/mixins';
+
+.layout{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.info {
+    background: url('../../../../public/index/login-img.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    @include mixins.tablet{
+        display: none;
+    }
+    padding: 2% 5%;
+}
+
+.title{
+    background-color: var(--light-background);
+    padding: 2% 5%;
+    border-radius: var(--b-radius);
+    width: fit-content;
+    align-self: flex-start;
+    margin-bottom: 5%;
+}
+
+.bottom{
+    background-color: var(--light-background);
+    padding: 6% 6%;
+    border-radius: var(--b-radius);
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.form{
+    background: url('../../../../public/index/form-frame.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 50%;
+    @include mixins.tablet{
+        width: 100%;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

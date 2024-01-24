@@ -1,22 +1,27 @@
 [
     {
       "name": "Overview",
-      "slug": "/"
+      "slug": "/",
+      "image": "/index/overview-img.png"  
     },
     {
       "name": "Transactions",
-      "slug": "/transactions"
+      "slug": "/transactions",
+      "image": "/index/transactions-img.png"  
     },
     {
       "name": "Allocations",
-      "slug": "/allocations"
+      "slug": "/allocations",
+      "image": "/index/allocations-img.png"  
     },
     {
       "name": "Incomes",
-      "slug": "/incomes"
+      "slug": "/incomes",
+      "image": "/index/balance-img.png"  
     },
     {
       "name": "Sign Out",
-      "slug": "/sign-out"
+      "slug": "/sign-out",
+      "image": "/index/sign-out-img.png"  
     }
   ]
