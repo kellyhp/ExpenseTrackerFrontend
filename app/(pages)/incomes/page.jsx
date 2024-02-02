@@ -9,10 +9,12 @@ export default function Incomes() {
     <main className={styles.mains}>
       <Header />
       <div className={styles.ColRow}>
-        <TotalCard />
+        <div className={styles.RowCol}>
+          <TotalCard />
+          <IncomeForm />
+        </div>
         <IncomeCard />
       </div>
-      <IncomeForm />
     </main>
   );
 }

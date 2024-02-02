@@ -10,7 +10,7 @@
     box-shadow: var(--b-shadow);
     padding: 30px 30px;
     @include mixins.tablet {
-        width: 310px;
+        width: 350px;
         padding: 20px 20px;
     }
     @include mixins.phone {
@@ -29,7 +29,7 @@
     width:200px;
     color: var(--text-light);
     @include mixins.tablet {
-        width:60px;
+        width:80px;
         font-size: 14px;
     }
 }
@@ -37,7 +37,7 @@
 .Name{
     width: 200px;
     @include mixins.tablet {
-        width:60px;
+        width:80px;
         font-size: 14px;
     }
 }
@@ -46,7 +46,7 @@
     width: 150px;
     color: var(--text-light);
     @include mixins.tablet {
-        width: 70px;
+        width: 90px;
         font-size: 14px;
     }
 }
@@ -55,7 +55,7 @@
     color: var(--text-light);
     width: 150px;
     @include mixins.tablet{
-        width: 70px;
+        width: 90px;
         font-size: 14px;
     }
 }

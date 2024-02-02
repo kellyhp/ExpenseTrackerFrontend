@@ -9,10 +9,12 @@ export default function Allocations() {
     <main className={styles.mains}>
       <Header />
       <div className={styles.ColRow}>
-        <TotalCard />
+        <div className={styles.RowCol}>
+          <TotalCard />
+          <ExpenseForm />
+        </div>
         <ExpenseCard />
       </div>
-      <ExpenseForm />
     </main>
   );
 }

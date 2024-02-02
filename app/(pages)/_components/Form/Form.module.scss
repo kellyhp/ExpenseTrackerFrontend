@@ -11,10 +11,10 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    @include mixins.tablet{
-        width: 300px;
-    }
     background-color: var(--light-background);
+    @include mixins.tablet {
+        margin-top: 15%;
+    }
 }
 
 .formTitle{

@@ -23,8 +23,18 @@
     flex-direction: row;
     gap: 2%;
     @include mixins.tablet{
-        gap: 5%;
+        gap: 2%;
         flex-direction: column;
+        justify-items: center;
+    }
+}
+
+.RowCol{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 2%;
+    @include mixins.tablet{
         justify-items: center;
     }
 }

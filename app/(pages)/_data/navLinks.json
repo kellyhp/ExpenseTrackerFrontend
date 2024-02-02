@@ -21,7 +21,7 @@
     },
     {
       "name": "Sign Out",
-      "slug": "/sign-out",
+      "slug": "/auth/login",
       "image": "/index/sign-out-img.png"  
     }
   ]

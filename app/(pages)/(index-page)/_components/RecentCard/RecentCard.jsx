@@ -1,4 +1,4 @@
-import styles from './RecentCard.module.scss';
+import styles from '../../../_components/History/History.module.scss';
 
 export default function RecentCard() {
   return (

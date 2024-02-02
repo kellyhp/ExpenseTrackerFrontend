@@ -51,12 +51,12 @@ export default function ExpenseCard() {
       </div>
       <div className={styles.actionContainer}>
         <div className={styles.ColRow}>
-          <p className={styles.Name}> Tercero Market </p>
-          <p className={styles.Type}> Shopping </p>
+          <p className={styles.Name}> Memorial Union </p>
+          <p className={styles.Type}> Food </p>
         </div>
         <div className={styles.ColRow}>
-          <p className={styles.Date}> 11/14/2023 </p>
-          <p className={styles.Amount}> $115.94 </p>
+          <p className={styles.Date}> 01/01/2024 </p>
+          <p className={styles.Amount}> $10.10 </p>
         </div>
         <div className={styles.ED_Button}>
           <button className={styles.button} onClick={handleEditClick}>
@@ -67,12 +67,12 @@ export default function ExpenseCard() {
       </div>
       <div className={styles.actionContainer}>
         <div className={styles.ColRow}>
-          <p className={styles.Name}> Tercero Market </p>
-          <p className={styles.Type}> Shopping </p>
+          <p className={styles.Name}> Peets </p>
+          <p className={styles.Type}> Food </p>
         </div>
         <div className={styles.ColRow}>
-          <p className={styles.Date}> 11/14/2023 </p>
-          <p className={styles.Amount}> $115.94 </p>
+          <p className={styles.Date}> 01/14/2023 </p>
+          <p className={styles.Amount}> $10.94 </p>
         </div>
         <div className={styles.ED_Button}>
           <button className={styles.button} onClick={handleEditClick}>

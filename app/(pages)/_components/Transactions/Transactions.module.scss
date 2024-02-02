@@ -3,18 +3,22 @@
 .container{
     width: fit-content;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     flex-direction: column;
+    max-height: 900px;
+    overflow-y: scroll;
     border-radius: var(--b-radius);
     box-shadow: var(--b-shadow);
     padding: 30px 30px;
     @include mixins.tablet {
-        width: 310px;
+        width: 350px;
         padding: 20px 20px;
+        min-height: 300px;
     }
     @include mixins.phone {
         margin-top: 30px;
+        min-height: 300px;
     }
 }
 
@@ -36,7 +40,7 @@
 .Name{
     width: 200px;
     @include mixins.tablet {
-        width:90px;
+        width:130px;
         font-size: 14px;
     }
 }
@@ -50,7 +54,7 @@
     color: var(--text-light);
     width: 150px;
     @include mixins.tablet{
-        width: 90px;
+        width: 130px;
         font-size: 14px;
     }
 }
@@ -64,6 +68,7 @@
     color: var(--text-light);
     width: 100px;
     @include mixins.tablet{
+        text-align: start;
         width: 80px;
         font-size: 14px;
     }
@@ -83,7 +88,7 @@
     justify-content: end;
     font-size: var(--font-quicksand);
     @include mixins.tablet{
-        width: 60px;
+        width: 65px;
         font-size: 14px;
     }
 }

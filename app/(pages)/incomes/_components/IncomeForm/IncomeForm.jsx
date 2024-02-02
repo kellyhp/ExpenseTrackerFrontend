@@ -23,6 +23,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="text"
           value={name}
+          required
           onChange={(e) => setName(e.target.value)}
           maxLength={20}
           placeholder="Name"
@@ -34,6 +35,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="date"
           value={date}
+          required
           onChange={(e) => setDate(e.target.value)}
         />
       </label>
@@ -43,6 +45,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="text"
           value={name}
+          required
           onChange={(e) => setType(e.target.value)}
           maxLength={15}
           placeholder="Type"
@@ -54,6 +57,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="number"
           value={cost}
+          required
           onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
           placeholder="0.00"
           min="0"
