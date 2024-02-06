@@ -1,9 +1,9 @@
-import '@globals/globals.scss';
-import fonts from '@globals/fonts';
-import metadata from '@globals/metadata';
+import "@globals/globals.scss";
+import fonts from "@globals/fonts";
+import metadata from "@globals/metadata";
 
-import navLinks from '@data/navLinks.json';
-import Navbar from '@components/Navbar/Navbar';
+import navLinks from "@data/navLinks.json";
+import Navbar from "@components/Navbar/Navbar";
 
 export { metadata };
 

@@ -1,16 +1,48 @@
-'use client';
-import React, { useState } from 'react';
-import styles from '../../../_components/Transactions/Transactions.module.scss';
-import Image from 'next/image';
-import Delete from '../../../../../public/index/Delete.png';
-import Edit from '../../../../../public/index/Edit.png';
-import Modal from '../Modal/Modal';
+"use client";
+import React, { useEffect, useState } from "react";
+import styles from "../../../_components/Transactions/Transactions.module.scss";
+import Image from "next/image";
+import Delete from "../../../../../public/index/Delete.png";
+import Edit from "../../../../../public/index/Edit.png";
+import Modal from "../Modal/Modal";
 
-export default function ExpenseCard() {
+export default function ExpenseCard({ expensesData, onExpenseEdit }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editMode, setEditMode] = useState(null);
+  const [editedValues, setEditedValues] = useState({
+    name: "",
+    type: "",
+    date: "",
+    cost: 0,
+  });
 
-  const handleEditClick = () => {
+  const handleDeleteClick = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // Handle successful deletion
+        // You may want to update the local state or perform any other actions
+        console.log("Expense deleted successfully");
+      } else {
+        // Handle errors
+        console.error("Failed to delete expense");
+      }
+    } catch (error) {
+      console.error("Error while deleting expense", error);
+    }
+  };
+
+  const handleEditClick = (exp) => {
+    // console.log("expensesData:", expensesData);
     setIsModalOpen(true);
+    setEditedValues(exp);
+    // console.log("EXP_.name:", exp.name);
   };
 
   const handleModalClose = () => {
@@ -19,7 +51,7 @@ export default function ExpenseCard() {
 
   const handleModalSave = (formData) => {
     // Handle saving data to MongoDB
-    console.log('Saving data:', formData);
+    console.log("Saving data:", formData);
 
     setIsModalOpen(false);
   };
@@ -33,64 +65,45 @@ export default function ExpenseCard() {
         <p className={styles.spaceDate}> Date </p>
         <p className={styles.spaceAmount}> Amount </p>
       </div>
-      <div className={styles.actionContainer}>
-        <div className={styles.ColRow}>
-          <p className={styles.Name}> Tercero Market </p>
-          <p className={styles.Type}> Shopping </p>
-        </div>
-        <div className={styles.ColRow}>
-          <p className={styles.Date}> 11/14/2023 </p>
-          <p className={styles.Amount}> $115.94 </p>
-        </div>
-        <div className={styles.ED_Button}>
-          <button className={styles.button} onClick={handleEditClick}>
-            <Image src={Edit} width={30} height={30} alt="Edit-Button" />
-          </button>
-          <Image src={Delete} width={30} height={30} alt="Delete-Button" />
-        </div>
-      </div>
-      <div className={styles.actionContainer}>
-        <div className={styles.ColRow}>
-          <p className={styles.Name}> Memorial Union </p>
-          <p className={styles.Type}> Food </p>
-        </div>
-        <div className={styles.ColRow}>
-          <p className={styles.Date}> 01/01/2024 </p>
-          <p className={styles.Amount}> $10.10 </p>
-        </div>
-        <div className={styles.ED_Button}>
-          <button className={styles.button} onClick={handleEditClick}>
-            <Image src={Edit} width={30} height={30} alt="Edit-Button" />
-          </button>
-          <Image src={Delete} width={30} height={30} alt="Delete-Button" />
-        </div>
-      </div>
-      <div className={styles.actionContainer}>
-        <div className={styles.ColRow}>
-          <p className={styles.Name}> Peets </p>
-          <p className={styles.Type}> Food </p>
-        </div>
-        <div className={styles.ColRow}>
-          <p className={styles.Date}> 01/14/2023 </p>
-          <p className={styles.Amount}> $10.94 </p>
-        </div>
-        <div className={styles.ED_Button}>
-          <button className={styles.button} onClick={handleEditClick}>
-            <Image src={Edit} width={30} height={30} alt="Edit-Button" />
-          </button>
-          <Image src={Delete} width={30} height={30} alt="Delete-Button" />
-        </div>
-      </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleModalClose}
-        onSave={handleModalSave}
-        initialData={
-          {
-            /* Pass initial data*/
-          }
-        }
-      />
+      {expensesData.map((expense, index) => (
+        <>
+          <div className={styles.actionContainer}>
+            <div className={styles.ColRow}>
+              <p className={styles.Name}>{expense.name}</p>
+              <p className={styles.Type}>{expense.type}</p>
+              <p className={styles.Date}>{expense.date}</p>
+              <p className={styles.Amount}>{expense.cost}</p>
+            </div>
+            <div className={styles.ED_Button}>
+              <button
+                className={styles.button}
+                onClick={() => handleEditClick(expense)}
+              >
+                <Image src={Edit} width={30} height={30} alt="Edit-Button" />
+              </button>
+              <button
+                className={styles.button}
+                onClick={() => handleDeleteClick(expense._id)}
+              >
+                <Image
+                  src={Delete}
+                  width={30}
+                  height={30}
+                  alt="Delete-Button"
+                />
+              </button>
+            </div>
+          </div>
+        </>
+      ))}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          onSave={handleModalSave}
+          initialData={editedValues}
+        />
+      )}
     </div>
   );
 }

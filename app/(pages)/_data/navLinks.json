@@ -1,27 +1,27 @@
 [
-    {
-      "name": "Overview",
-      "slug": "/",
-      "image": "/index/overview-img.png"  
-    },
-    {
-      "name": "Transactions",
-      "slug": "/transactions",
-      "image": "/index/transactions-img.png"  
-    },
-    {
-      "name": "Allocations",
-      "slug": "/allocations",
-      "image": "/index/allocations-img.png"  
-    },
-    {
-      "name": "Incomes",
-      "slug": "/incomes",
-      "image": "/index/balance-img.png"  
-    },
-    {
-      "name": "Sign Out",
-      "slug": "/auth/login",
-      "image": "/index/sign-out-img.png"  
-    }
-  ]
+  {
+    "name": "Overview",
+    "slug": "/",
+    "image": "/index/overview-img.png"
+  },
+  {
+    "name": "Transactions",
+    "slug": "/transactions",
+    "image": "/index/transactions-img.png"
+  },
+  {
+    "name": "Allocations",
+    "slug": "/allocations",
+    "image": "/index/allocations-img.png"
+  },
+  {
+    "name": "Incomes",
+    "slug": "/incomes",
+    "image": "/index/balance-img.png"
+  },
+  {
+    "name": "Sign Out",
+    "slug": "/auth/login",
+    "image": "/index/sign-out-img.png"
+  }
+]

@@ -1,17 +1,58 @@
-'use client';
-import styles from '../../../_components/Form/Form.module.scss';
-import { useState } from 'react';
+"use client";
+import styles from "../../../_components/Form/Form.module.scss";
+import { useEffect, useState } from "react";
 
-export default function ExpenseForm() {
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [type, setType] = useState('');
-  const [cost, setCost] = useState('');
+export default function ExpenseForm({ onExpenseAdded }) {
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [type, setType] = useState("");
+  const [cost, setCost] = useState("");
+  const [expenseAdd, setExpenseAdd] = useState(false);
+  const [getData, setGetData] = useState("");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/users");
+        const data = await response.json();
+        setGetData(data);
+        console.log("GetData:", getData);
+        onExpenseAdded(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      setExpenseAdd(false);
+    };
+    fetchData();
+  }, [expenseAdd]);
+
+  async function PostData() {
+    console.log("Hkkk");
+    try {
+      const response = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, date, type, cost, category: "expense" }),
+      });
+      const data = await response.json();
+      console.log("data:", data);
+      // console.log("setExpenseAdd1:", expenseAdd);
+      setExpenseAdd(true);
+      // onExpenseAdded(data);
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // form submission logic here
-    console.log({ name, date, type, cost });
+    console.log("Expense:", { name, date, type, cost });
+    // setExpenseAdded(true);
+
+    await PostData();
   };
 
   return (
@@ -22,6 +63,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="text"
           value={name}
+          required
           onChange={(e) => setName(e.target.value)}
           maxLength={20}
           placeholder="Name"
@@ -32,6 +74,7 @@ export default function ExpenseForm() {
         <input
           className={styles.input}
           type="date"
+          required
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -40,9 +83,14 @@ export default function ExpenseForm() {
       <label>
         <select
           className={styles.input}
+          required
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
+          <option disabled hidden value="">
+            {" "}
+            Select An Option{" "}
+          </option>
           <option value="food">Food</option>
           <option value="academics">Academics</option>
           <option value="personal-care">Personal Care</option>
@@ -57,6 +105,7 @@ export default function ExpenseForm() {
           className={styles.input}
           type="number"
           value={cost}
+          required
           onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
           placeholder="0.00"
           min="0"
