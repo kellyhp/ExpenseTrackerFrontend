@@ -1,16 +1,44 @@
-'use client';
-import { useState } from 'react';
-import styles from '../../../_components/Form/Form.module.scss';
+"use client";
+import { useState } from "react";
+import styles from "../../../_components/Form/Form.module.scss";
 
 function Modal({ isOpen, onClose, onSave, initialData }) {
-  const [name, setName] = useState(initialData ? initialData.name : '');
-  const [date, setDate] = useState(initialData ? initialData.date : '');
-  const [type, setType] = useState(initialData ? initialData.type : 'food');
+  console.log("initialData:", initialData.name);
+  const [name, setName] = useState(initialData ? initialData.name : "");
+  const [date, setDate] = useState(initialData ? initialData.date : "");
+  const [type, setType] = useState(initialData ? initialData.type : "food");
   const [cost, setCost] = useState(initialData ? initialData.cost : 0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     onSave({ name, date, type, cost });
+
+    try {
+      // Make a PUT request to update the expense in the database
+      const response = await fetch(
+        `http://localhost:3001/users/${initialData._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, date, type, cost, category: "income" }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Error updating income:", response.statusText);
+        // Handle error as needed
+        return;
+      }
+
+      const updatedExpense = await response.json();
+      console.log("Income updated in the database:", updatedExpense);
+    } catch (error) {
+      console.error("Error updating income:", error);
+      // Handle error as needed
+    }
+    onClose();
   };
 
   return (

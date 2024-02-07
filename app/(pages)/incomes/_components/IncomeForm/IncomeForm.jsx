@@ -1,18 +1,53 @@
-'use client';
-import styles from '../../../_components/Form/Form.module.scss';
+"use client";
+import styles from "../../../_components/Form/Form.module.scss";
 
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 
-export default function ExpenseForm() {
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [type, setType] = useState('');
-  const [cost, setCost] = useState('');
+export default function ExpenseForm({ onIncomeAdded }) {
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [type, setType] = useState("");
+  const [cost, setCost] = useState("");
+  const [incomeAdd, setIncomeAdd] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/users/income");
+        const data = await response.json();
+        console.log("Income fetched data:", data);
+        onIncomeAdded(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      setIncomeAdd(false);
+    };
+    fetchData();
+  }, [incomeAdd]);
+
+  async function PostData() {
+    console.log("Hkkk");
+    try {
+      const response = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, date, type, cost, category: "income" }),
+      });
+      const data = await response.json();
+      console.log("data:", data);
+      setIncomeAdd(true);
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // form submission logic here
-    console.log({ name, date, type, cost });
+    console.log("Income:", { name, date, type, cost });
+    await PostData();
   };
 
   return (
