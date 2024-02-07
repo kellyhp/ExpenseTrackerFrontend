@@ -94,4 +94,48 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// income
+router.get("/total-income", async (req, res) => {
+  try {
+    const totalIncome = await User.aggregate([
+      { $match: { category: "income" } },
+      { $group: { _id: null, total: { $sum: "$cost" } } }
+    ]);
+    res.status(200).json(totalIncome[0].total);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// outcome
+router.get("/total-outcome", async (req, res) => {
+  try {
+    const totalOutcome = await User.aggregate([
+      { $match: { category: "expense" } },
+      { $group: { _id: null, total: { $sum: "$cost" } } }
+    ]);
+    res.status(200).json(totalOutcome[0].total);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// bal
+router.get("/total-balance", async (req, res) => {
+  try {
+    const totalIncome = await User.aggregate([
+      { $match: { category: "income" } },
+      { $group: { _id: null, totalIncome: { $sum: "$cost" } } }
+    ]);
+    const totalOutcome = await User.aggregate([
+      { $match: { category: "expense" } },
+      { $group: { _id: null, totalOutcome: { $sum: "$cost" } } }
+    ]);
+    const balance = totalIncome[0].totalIncome - totalOutcome[0].totalOutcome;
+    res.status(200).json(balance);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
