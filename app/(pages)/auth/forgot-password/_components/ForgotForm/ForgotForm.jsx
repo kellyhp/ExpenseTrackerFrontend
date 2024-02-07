@@ -1,16 +1,16 @@
-'use client';
-import styles from '../../../../_components/Form/Form.module.scss';
-import { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import styles from "../../../../_components/Form/Form.module.scss";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function ForgotForm() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSend = () => {
     // logic to send the password reset email (API??)
   };
 
-  const isEmailValid = email.trim() !== ''; // Check if email is non-empty
+  const isEmailValid = email.trim() !== ""; // Check if email is non-empty
 
   return (
     <form className={styles.form} onSubmit={handleSend}>

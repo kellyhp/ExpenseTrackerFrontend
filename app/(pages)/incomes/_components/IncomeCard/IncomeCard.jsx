@@ -1,10 +1,11 @@
-"use client";
+'use client';
 import React, { useState } from "react";
 import styles from "../../../_components/Transactions/Transactions.module.scss";
 import Image from "next/image";
 import Delete from "../../../../../public/index/Delete.png";
 import Edit from "../../../../../public/index/Edit.png";
 import Modal from "../Modal/Modal";
+import { useRouter } from 'next/router';
 
 export default function IncomeCard({ incomesData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,25 +33,24 @@ export default function IncomeCard({ incomesData }) {
           "Content-Type": "application/json",
         },
       });
-
+  
       if (response.ok) {
-        // Handle successful deletion
-        // You may want to update the local state or perform any other actions
-        console.log("Expense deleted successfully");
+        // Reload the page after successful deletion
+        router.reload();
       } else {
-        // Handle errors
         console.error("Failed to delete expense");
       }
     } catch (error) {
       console.error("Error while deleting expense", error);
     }
   };
-
+  
   const handleModalSave = (formData) => {
     // Handle saving data to MongoDB
     console.log("Saving data:", formData);
-
-    setIsModalOpen(false);
+  
+    // Reload the page after saving changes
+    router.reload();
   };
   return (
     <div className={styles.container}>
@@ -68,7 +68,7 @@ export default function IncomeCard({ incomesData }) {
               <p className={styles.Name}>{income.name}</p>
               <p className={styles.Type}>{income.type}</p>
               <p className={styles.Date}>{income.date}</p>
-              <p className={styles.Amount}>{income.cost}</p>
+              <p className={styles.Amount}>{income.cost.toFixed(2)}</p>
             </div>
             <div className={styles.ED_Button}>
               <button

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import styles from "../../../_components/Form/Form.module.scss";
 
 import { useState, useEffect } from "react";
@@ -45,8 +45,12 @@ export default function ExpenseForm({ onIncomeAdded }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Format cost to have two decimal places
+    const formattedCost = parseFloat(cost).toFixed(2);
+  
     // form submission logic here
-    console.log("Income:", { name, date, type, cost });
+    console.log("Income:", { name, date, type, cost: formattedCost });
     await PostData();
   };
 
@@ -93,7 +97,7 @@ export default function ExpenseForm({ onIncomeAdded }) {
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
+          onChange={(e) => setCost(e.target.value)} 
           placeholder="0.00"
           min="0"
           step="0.01"

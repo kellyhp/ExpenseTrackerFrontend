@@ -1,39 +1,40 @@
 @use "./mixins";
 
 :root {
-    /* variables */
+  /* variables */
 
-    --primary: #404040;
-    --secondary: #e7c6f9;
-    --light-background: #FFFFFF;
-    --dark-background: #0d303b;
+  --primary: #404040;
+  --secondary: #e7c6f9;
+  --light-background: #ffffff;
+  --dark-background: #0d303b;
 
-    --text-dark: #404040;
-    --text-light: #C7C7C7;
-    --text-secondary: #696969;
+  --text-dark: #404040;
+  --text-light: #c7c7c7;
+  --text-secondary: #696969;
 
-    --blue: #197BBD;
-    --green: #439A86;
-    --red: #BB4430;
+  --blue: #197bbd;
+  --green: #439a86;
+  --red: #bb4430;
 
-    --b-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.06);
-    --f-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.10);
+  --b-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
+    0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.06);
+  --f-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.1);
 
-    /* spacers */
-    --tiny-spacer: 8px;
-    --small-spacer: 16px;
-    --spacer: 24px;
-    --medium-spacer: 48px;
-    --large-spacer: 80px;
-    
-    /* border radius */
-    --b-radius: 19px;
-    --f-radius: 10px;
+  /* spacers */
+  --tiny-spacer: 8px;
+  --small-spacer: 16px;
+  --spacer: 24px;
+  --medium-spacer: 48px;
+  --large-spacer: 80px;
 
-    /* navbar */
-    --navbar-height: 80px;
+  /* border radius */
+  --b-radius: 19px;
+  --f-radius: 10px;
 
-    background-color: var(--light-background);
+  /* navbar */
+  --navbar-height: 80px;
+
+  background-color: var(--light-background);
 }
 
 * {
@@ -50,17 +51,17 @@ a {
 }
 
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 h2 {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 h3 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 h4 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 p {
-    font-size: 1rem;
+  font-size: 1rem;
 }

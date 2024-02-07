@@ -1,11 +1,11 @@
-'use client';
-import styles from '../../../../_components/Form/Form.module.scss';
-import { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import styles from "../../../../_components/Form/Form.module.scss";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function SignInForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ export default function SignInForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Welcome</h3>
       <p>
-        Don't have an account?{' '}
+        Don't have an account?{" "}
         <Link className={styles.link} href="/auth/create-account">
           Sign up
         </Link>
@@ -47,7 +47,7 @@ export default function SignInForm() {
       <br />
       <br />
       <p>
-        Forgot Password?{' '}
+        Forgot Password?{" "}
         <Link className={styles.link} href="/auth/forgot-password">
           Reset Password
         </Link>

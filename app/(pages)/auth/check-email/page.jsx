@@ -1,8 +1,8 @@
-import styles from '../../_components/Layout/Layout.module.scss';
-import info from '../../_components/Info/Info.module.scss';
-import Image from 'next/image';
-import AggieBank from '../../../../public/index/AggieBank.png';
-import CheckForm from './_components/CheckForm/CheckForm';
+import styles from "../../_components/Layout/Layout.module.scss";
+import info from "../../_components/Info/Info.module.scss";
+import Image from "next/image";
+import AggieBank from "../../../../public/index/AggieBank.png";
+import CheckForm from "./_components/CheckForm/CheckForm";
 
 export default function CheckEmail() {
   return (

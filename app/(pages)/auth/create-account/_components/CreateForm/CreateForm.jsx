@@ -1,13 +1,13 @@
-'use client';
-import styles from '../../../../_components/Form/Form.module.scss';
-import { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import styles from "../../../../_components/Form/Form.module.scss";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function CreateForm() {
-  const [firstName, setfirstName] = useState('');
-  const [lastName, setlastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function CreateForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Welcome</h3>
       <p>
-        Already have an account?{' '}
+        Already have an account?{" "}
         <Link className={styles.link} href="/auth/login">
           Login
         </Link>

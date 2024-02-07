@@ -1,12 +1,12 @@
-'use client';
-import styles from '../../../../_components/Form/Form.module.scss';
-import { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import styles from "../../../../_components/Form/Form.module.scss";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function ResetForm() {
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   // need API to reset afterwards
 
@@ -14,7 +14,7 @@ export default function ResetForm() {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
     resetPassword(newPassword);
@@ -22,17 +22,17 @@ export default function ResetForm() {
 
   const resetPassword = async (newPassword) => {
     if (newPassword.length > 0) {
-      window.location.href = '/auth/login';
+      window.location.href = "/auth/login";
     }
     //If the reset is successful, navigate to the login page
-    window.location.href = '/auth/login';
+    window.location.href = "/auth/login";
   };
-  console.log('Error:', error);
+  console.log("Error:", error);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {error && (
-        <p style={{ color: 'red' }}>
+        <p style={{ color: "red" }}>
           {error} <br />
         </p>
       )}

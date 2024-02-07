@@ -1,7 +1,7 @@
-import Header from './_components/Header/Header';
-import TotalCard from '@components/TotalCard/TotalCard';
-import RecentCard from './_components/RecentCard/RecentCard';
-import styles from '../_components/Layout/Layout.module.scss';
+import Header from "./_components/Header/Header";
+import TotalCard from "@components/TotalCard/TotalCard";
+import RecentCard from "./_components/RecentCard/RecentCard";
+import styles from "../_components/Layout/Layout.module.scss";
 
 export default function Home() {
   return (

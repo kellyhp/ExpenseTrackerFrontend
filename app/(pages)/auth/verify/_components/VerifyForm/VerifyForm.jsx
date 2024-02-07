@@ -1,5 +1,5 @@
-import styles from '../../../../_components/Form/Form.module.scss';
-import Link from 'next/link';
+import styles from "../../../../_components/Form/Form.module.scss";
+import Link from "next/link";
 
 export default function VerifyForm() {
   // Logic to resend the forgot password email
@@ -20,7 +20,7 @@ export default function VerifyForm() {
           Resend Email
         </button>
         <Link href="/auth/login" className={styles.submit}>
-          {' '}
+          {" "}
           Back To Login
         </Link>
       </div>

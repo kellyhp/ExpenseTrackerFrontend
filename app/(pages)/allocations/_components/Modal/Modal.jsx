@@ -25,7 +25,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, date, type, cost, category: "expense" }),
-        }
+        },
       );
 
       if (!response.ok) {

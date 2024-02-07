@@ -1,11 +1,11 @@
-'use client';
-import Link from 'next/link';
-import Image from 'next/image';
-import { RxHamburgerMenu, RxCross2 } from 'react-icons/rx';
-import AggieBank from '../../../../public/index/AggieBank.png';
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import AggieBank from "../../../../public/index/AggieBank.png";
 
-import styles from './Navbar.module.scss';
-import useToggle from '@hooks/useToggle';
+import styles from "./Navbar.module.scss";
+import useToggle from "@hooks/useToggle";
 
 export default function Navbar({ navLinks }) {
   const [active, toggleActive, _, setInactive] = useToggle(false);
