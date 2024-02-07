@@ -4,7 +4,16 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({ category: "expense" });
+    res.status(200).json(users);
+  } catch (error) {
+    res.send(`Some error occurred => ${error}`);
+  }
+});
+
+router.get("/income", async (req, res) => {
+  try {
+    const users = await User.find({ category: "income" });
     res.status(200).json(users);
   } catch (error) {
     res.send(`Some error occurred => ${error}`);
