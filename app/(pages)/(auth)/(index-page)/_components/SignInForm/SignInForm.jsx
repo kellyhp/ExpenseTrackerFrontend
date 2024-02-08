@@ -18,7 +18,7 @@ export default function SignInForm() {
       <h3 className={styles.formTitle}>Welcome</h3>
       <p>
         Don't have an account?{" "}
-        <Link className={styles.link} href="/auth/create-account">
+        <Link className={styles.link} href="/create-account">
           Sign up
         </Link>
       </p>
@@ -48,7 +48,7 @@ export default function SignInForm() {
       <br />
       <p>
         Forgot Password?{" "}
-        <Link className={styles.link} href="/auth/forgot-password">
+        <Link className={styles.link} href="/forgot-password">
           Reset Password
         </Link>
       </p>

@@ -34,14 +34,14 @@ export default function ForgotForm() {
       <div className={styles.btnDiv}>
         {isEmailValid && (
           <Link
-            href="/auth/check-email"
+            href="/check-email"
             className={styles.submit}
             onClick={handleSend}
           >
             Send
           </Link>
         )}
-        <Link href="/auth/login" className={styles.submit}>
+        <Link href="/" className={styles.submit}>
           Back To Login
         </Link>
       </div>

@@ -38,7 +38,7 @@ export default function Login() {
             <br />
             <p> Account created successfully</p>
             <br />
-            <Link href="/auth/login" className={form.submit}>
+            <Link href="/" className={form.submit}>
               Login
             </Link>
           </div>

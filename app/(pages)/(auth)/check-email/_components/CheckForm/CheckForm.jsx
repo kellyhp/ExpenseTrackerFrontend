@@ -22,7 +22,7 @@ export default function CheckForm() {
         >
           Resend Email
         </button>
-        <Link href="/auth/login" className={styles.submit}>
+        <Link href="/" className={styles.submit}>
           {" "}
           Back To Login{" "}
         </Link>

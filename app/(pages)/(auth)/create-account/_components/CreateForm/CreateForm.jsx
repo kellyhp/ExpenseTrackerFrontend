@@ -20,7 +20,7 @@ export default function CreateForm() {
       <h3 className={styles.formTitle}>Welcome</h3>
       <p>
         Already have an account?{" "}
-        <Link className={styles.link} href="/auth/login">
+        <Link className={styles.link} href="/">
           Login
         </Link>
       </p>
@@ -71,7 +71,7 @@ export default function CreateForm() {
       <br />
       <br />
       <button className={styles.submit} type="submit">
-        <Link href="/auth/verify"> Create Account </Link>
+        <Link href="/verify"> Create Account </Link>
       </button>
     </form>
   );
