@@ -23,24 +23,22 @@ export default function SignInForm() {
         </Link>
       </p>
       <br />
-      <label>
+      <label className={styles.label}> Email
         <input
           className={styles.input}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Password
         <input
           className={styles.input}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
           required
         />
       </label>
@@ -55,7 +53,7 @@ export default function SignInForm() {
       <br />
       <br />
       <button className={styles.submit} type="submit">
-        <Link href="/"> Sign In </Link>
+        <Link href="/dashboard"> Sign In </Link>
       </button>
     </form>
   );

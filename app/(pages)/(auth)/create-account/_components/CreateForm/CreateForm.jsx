@@ -8,11 +8,22 @@ export default function CreateForm() {
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement your sign-in logic here
-    console.log({ email, password });
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long.");
+    } else if (password !== confirmPassword) {
+      setConfirmPasswordError("Passwords do not match.");
+    } else {
+      setPasswordError("");
+      setConfirmPasswordError("");
+      // Implement your sign-in logic here
+      console.log({ email, password });
+    }
   };
 
   return (
@@ -25,50 +36,65 @@ export default function CreateForm() {
         </Link>
       </p>
       <br />
-      <label>
+      <label className={styles.label}>
+        First Name:
         <input
           className={styles.input}
           type="text"
           value={firstName}
           onChange={(e) => setfirstName(e.target.value)}
-          placeholder="First Name"
+
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}>
+        Last Name:
         <input
           className={styles.input}
           type="text"
           value={lastName}
           onChange={(e) => setlastName(e.target.value)}
-          placeholder="Last Name"
+
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}>
+        Email:
         <input
           className={styles.input}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}>
+        Password:
         <input
           className={styles.input}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
           required
         />
       </label>
       <br />
+      <label className={styles.label}>
+        Confirm Password:
+        <input
+          className={styles.input}
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+      </label>
+      <br/>
+      {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+      {confirmPasswordError && <p style={{ color: "red" }}>{confirmPasswordError}</p>}
       <br />
       <button className={styles.submit} type="submit">
         <Link href="/verify"> Create Account </Link>
@@ -76,3 +102,4 @@ export default function CreateForm() {
     </form>
   );
 }
+

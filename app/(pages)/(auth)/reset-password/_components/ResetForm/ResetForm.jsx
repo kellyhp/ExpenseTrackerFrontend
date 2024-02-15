@@ -31,36 +31,34 @@ export default function ResetForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {error && (
-        <p style={{ color: "red" }}>
-          {error} <br />
-        </p>
-      )}
       <h3 className={styles.formTitle}>Reset Password</h3>
       <p>Choose a new password for your account.</p>
       <br />
-      <label>
+      <label className={styles.label}> New Password
         <input
           className={styles.input}
           type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          placeholder="New Password"
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Confirm New Password
         <input
           className={styles.input}
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm Password"
           required
         />
       </label>
       <br />
+      {error && (
+        <p style={{ color: "red" }}>
+          {error} <br />
+        </p>
+      )}
       <div className={styles.btnDiv}>
         <button className={styles.submit} type="submit">
           Reset Password

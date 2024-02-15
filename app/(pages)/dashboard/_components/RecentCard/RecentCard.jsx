@@ -2,13 +2,13 @@
 import { useEffect, useState } from "react";
 import styles from "../../../_components/History/History.module.scss";
 
-export default function RecentCard({ userId }) {
+export default function RecentCard() {
   const [topThreeExpenses, setTopThreeExpenses] = useState([]);
 
   useEffect(() => {
     const fetchTopThreeExpenses = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/users/${userId}`);
+        const response = await fetch(`http://localhost:3001/users/top-three-costly-expense`);
         const data = await response.json();
         setTopThreeExpenses(data);
       } catch (error) {
@@ -17,7 +17,7 @@ export default function RecentCard({ userId }) {
     };
 
     fetchTopThreeExpenses();
-  }, [userId]);
+  });
 
   return (
     <div className={styles.container}>

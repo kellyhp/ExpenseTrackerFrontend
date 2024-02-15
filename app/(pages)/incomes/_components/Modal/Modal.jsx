@@ -47,7 +47,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
         <div className={styles.modal}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <h3 className={styles.formTitle}>Edit This Income</h3>
-            <label>
+            <label className={styles.label}> Name
               <input
                 className={styles.input}
                 type="text"
@@ -58,7 +58,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Date
               <input
                 className={styles.input}
                 type="date"
@@ -67,7 +67,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Type
               <input
                 className={styles.input}
                 type="text"
@@ -78,7 +78,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Value
               <input
                 className={styles.input}
                 type="number"

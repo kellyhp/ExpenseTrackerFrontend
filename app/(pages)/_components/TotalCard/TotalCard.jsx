@@ -10,7 +10,7 @@ export default function TotalCard() {
   useEffect(() => {
     async function fetchTotalIncome() {
       try {
-        const response = await fetch("http://localhost:3001/total-income");
+        const response = await fetch("http://localhost:3001/users/total-income");
         const data = await response.json();
         setTotalIncome(data);
       } catch (error) {
@@ -20,7 +20,7 @@ export default function TotalCard() {
 
     async function fetchTotalOutcome() {
       try {
-        const response = await fetch("http://localhost:3001/total-outcome");
+        const response = await fetch("http://localhost:3001/users/total-outcome");
         const data = await response.json();
         setTotalOutcome(data);
       } catch (error) {
@@ -30,7 +30,7 @@ export default function TotalCard() {
 
     async function fetchTotalBalance() {
       try {
-        const response = await fetch("http://localhost:3001/total-balance");
+        const response = await fetch("http://localhost:3001/users/total-balance");
         const data = await response.json();
         setTotalBalance(data);
       } catch (error) {

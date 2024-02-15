@@ -68,11 +68,13 @@ export default function ExpenseCard({ expensesData, onExpenseEdit }) {
       {expensesData.map((expense, index) => (
         <>
           <div className={styles.actionContainer}>
-            <div className={styles.ColRow}>
+          <div className={styles.ColRow}>
               <p className={styles.Name}>{expense.name}</p>
               <p className={styles.Type}>{expense.type}</p>
+            </div>
+            <div className={styles.ColRow}>
               <p className={styles.Date}>{expense.date}</p>
-              <p className={styles.Amount}>{expense.cost}</p>
+              <p className={styles.Amount}>{expense.cost.toFixed(2)}</p>
             </div>
             <div className={styles.ED_Button}>
               <button

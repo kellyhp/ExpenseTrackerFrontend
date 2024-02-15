@@ -20,13 +20,12 @@ export default function ForgotForm() {
         instructions on how to reset your password.
       </p>
       <br />
-      <label>
+      <label className={styles.label}> Email
         <input
           className={styles.input}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
           required
         />
       </label>
