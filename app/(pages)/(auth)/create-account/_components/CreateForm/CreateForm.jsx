@@ -37,7 +37,7 @@ export default function CreateForm() {
       </p>
       <br />
       <label className={styles.label}>
-        First Name:
+        First Name
         <input
           className={styles.input}
           type="text"
@@ -49,7 +49,7 @@ export default function CreateForm() {
       </label>
       <br />
       <label className={styles.label}>
-        Last Name:
+        Last Name
         <input
           className={styles.input}
           type="text"
@@ -61,7 +61,7 @@ export default function CreateForm() {
       </label>
       <br />
       <label className={styles.label}>
-        Email:
+        Email
         <input
           className={styles.input}
           type="email"
@@ -72,7 +72,7 @@ export default function CreateForm() {
       </label>
       <br />
       <label className={styles.label}>
-        Password:
+        Password
         <input
           className={styles.input}
           type="password"
@@ -83,7 +83,7 @@ export default function CreateForm() {
       </label>
       <br />
       <label className={styles.label}>
-        Confirm Password:
+        Confirm Password
         <input
           className={styles.input}
           type="password"
