@@ -1,10 +1,23 @@
 const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+
+router.post("/login", (req, res) => {
+  // Authentication
+  const username = req.body.username;
+  const user = { name: username };
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+  res.json({ accessToken: accessToken });
+});
 
 router.get("/", async (req, res) => {
   try {
-    const users = await User.find({ category: "expense" });
+    // console.log("REQ:", req.headers.authorization);
+    const users = await User.find({
+      token: req.headers.authorization.split(" ")[1],
+      category: "expense",
+    });
     res.status(200).json(users);
   } catch (error) {
     res.send(`Some error occurred => ${error}`);
@@ -13,19 +26,25 @@ router.get("/", async (req, res) => {
 
 router.get("/income", async (req, res) => {
   try {
-    const users = await User.find({ category: "income" });
+    const users = await User.find({
+      token: req.headers.authorization.split(" ")[1],
+      category: "income",
+    });
     res.status(200).json(users);
   } catch (error) {
     res.send(`Some error occurred => ${error}`);
   }
 });
 
-router.get("/top-three-costly-expense", async (req, res) => {
+router.get("/top-four-costly-expense", async (req, res) => {
   try {
     // Find the top three most costly objects
-    const topThreeCostlyObjects = await User.find()
+    const topThreeCostlyObjects = await User.find({
+      token: req.headers.authorization.split(" ")[1],
+      category: "expense",
+    })
       .sort({ cost: -1 }) // Sort in descending order based on 'cost'
-      .limit(3); // Limit to the top three results
+      .limit(4); // Limit to the top three results
 
     res.json(topThreeCostlyObjects);
   } catch (error) {
@@ -55,6 +74,7 @@ router.post("/", async (req, res) => {
   // console.log(:hi)
   console.log("req.body1:", req.body);
   const user = new User({
+    token: req.body.token,
     name: req.body.name,
     type: req.body.type,
     date: req.body.date,
@@ -74,6 +94,7 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  // console.log("ID");
   const { id } = req.params;
   const { name, type, date, cost, category } = req.body;
   try {
@@ -99,9 +120,13 @@ router.get("/total-income", async (req, res) => {
   try {
     const totalIncome = await User.aggregate([
       { $match: { category: "income" } },
-      { $group: { _id: null, total: { $sum: "$cost" } } }
+      { $group: { _id: null, total: { $sum: "$cost" } } },
     ]);
-    res.status(200).json(totalIncome[0].total);
+
+    // Check if totalIncome array is empty
+    const incomeTotal = totalIncome.length > 0 ? totalIncome[0].total : 0;
+
+    res.status(200).json(incomeTotal);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -112,9 +137,13 @@ router.get("/total-outcome", async (req, res) => {
   try {
     const totalOutcome = await User.aggregate([
       { $match: { category: "expense" } },
-      { $group: { _id: null, total: { $sum: "$cost" } } }
+      { $group: { _id: null, total: { $sum: "$cost" } } },
     ]);
-    res.status(200).json(totalOutcome[0].total);
+
+    // Check if totalOutcome array is empty
+    const outcomeTotal = totalOutcome.length > 0 ? totalOutcome[0].total : 0;
+
+    res.status(200).json(outcomeTotal);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -125,13 +154,21 @@ router.get("/total-balance", async (req, res) => {
   try {
     const totalIncome = await User.aggregate([
       { $match: { category: "income" } },
-      { $group: { _id: null, totalIncome: { $sum: "$cost" } } }
+      { $group: { _id: null, totalIncome: { $sum: "$cost" } } },
     ]);
+
     const totalOutcome = await User.aggregate([
       { $match: { category: "expense" } },
-      { $group: { _id: null, totalOutcome: { $sum: "$cost" } } }
+      { $group: { _id: null, totalOutcome: { $sum: "$cost" } } },
     ]);
-    const balance = totalIncome[0].totalIncome - totalOutcome[0].totalOutcome;
+
+    // Check if totalIncome or totalOutcome arrays are empty
+    const income = totalIncome.length > 0 ? totalIncome[0].totalIncome : 0;
+    const outcome = totalOutcome.length > 0 ? totalOutcome[0].totalOutcome : 0;
+
+    // Calculate balance
+    const balance = income - outcome;
+    console.log("balance: ", balance);
     res.status(200).json(balance);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
