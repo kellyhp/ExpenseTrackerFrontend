@@ -1,16 +1,40 @@
 "use client";
 import styles from "../../../../_components/Form/Form.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth"; // Import Firebase Authentication methods
 
 export default function ForgotForm() {
   const [email, setEmail] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false); // State to track email validity
 
-  const handleSend = () => {
-    // logic to send the password reset email (API??)
+  const handleSend = (e) => {
+    // console.log("email:", email);
+    e.preventDefault();
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("Password reset email sent.");
+        // Handle success (e.g., show a success message to the user)
+      })
+      .catch((error) => {
+        console.error("Error sending password reset email:", error);
+        // Handle error (e.g., show an error message to the user)
+      });
   };
 
-  const isEmailValid = email.trim() !== ""; // Check if email is non-empty
+  // Function to validate email
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  // Function to handle email input change
+  const handleEmailChange = (e) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    setIsEmailValid(validateEmail(emailValue)); // Update email validity state
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSend}>
@@ -25,21 +49,17 @@ export default function ForgotForm() {
           className={styles.input}
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange} // Use the custom handler for email change
           placeholder="Email"
           required
         />
       </label>
       <br />
       <div className={styles.btnDiv}>
-        {isEmailValid && (
-          <Link
-            href="/check-email"
-            className={styles.submit}
-            onClick={handleSend}
-          >
+        {isEmailValid && ( // Render the "Send" button only if email is valid
+          <button type="submit" className={styles.submit}>
             Send
-          </Link>
+          </button>
         )}
         <Link href="/" className={styles.submit}>
           Back To Login

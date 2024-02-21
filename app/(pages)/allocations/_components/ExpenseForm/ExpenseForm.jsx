@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import styles from "../../../_components/Form/Form.module.scss";
 import { useEffect, useState } from "react";
 
@@ -13,7 +13,12 @@ export default function ExpenseForm({ onExpenseAdded }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users");
+        const response = await fetch("http://localhost:3001/users", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
+          },
+        });
         const data = await response.json();
         setGetData(data);
         console.log("GetData:", getData);
@@ -34,7 +39,15 @@ export default function ExpenseForm({ onExpenseAdded }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, date, type, cost, category: "expense" }),
+
+        body: JSON.stringify({
+          token: sessionStorage.getItem("UID"),
+          name,
+          date,
+          type,
+          cost,
+          category: "expense",
+        }),
       });
       const data = await response.json();
       console.log("data:", data);
@@ -48,12 +61,9 @@ export default function ExpenseForm({ onExpenseAdded }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // Format cost to have two decimal places
-    const formattedCost = parseFloat(cost).toFixed(2);
-  
+
     // Form submission logic here
-    console.log("Expense:", { name, date, type, cost: formattedCost });
+    console.log("Expense:", { name, date, type, cost: cost });
     await PostData();
   };
 
@@ -108,7 +118,7 @@ export default function ExpenseForm({ onExpenseAdded }) {
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(e.target.value)} 
+          onChange={(e) => setCost(e.target.value)}
           placeholder="0.00"
           min="0"
           step="0.01"

@@ -1,16 +1,40 @@
 "use client";
 import styles from "../../../../_components/Form/Form.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../../../firebase";
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement your sign-in logic here
-    console.log({ email, password });
+  const handleSubmit = async (e) => {
+    if (sessionStorage.getItem("verified") === "false") {
+      window.location.reload();
+    } else {
+      e.preventDefault();
+      // Implement your sign-in logic here
+      console.log({ email, password });
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+        console.log("Signed in user:", user);
+        console.log("Uid:", user.uid);
+        if (user.uid) {
+          sessionStorage.setItem("UID", user.uid);
+          window.location.href = "/dashboard";
+        }
+        // Redirect or perform additional actions after successful sign-in
+      } catch (error) {
+        console.error("Sign-in error:", error.message);
+        // Handle sign-in error (display error message, etc.)
+      }
+    }
   };
 
   return (
@@ -55,7 +79,7 @@ export default function SignInForm() {
       <br />
       <br />
       <button className={styles.submit} type="submit">
-        <Link href="/"> Sign In </Link>
+        Sign In
       </button>
     </form>
   );

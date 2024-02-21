@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import styles from "../../../_components/Form/Form.module.scss";
 
 import { useState, useEffect } from "react";
@@ -9,11 +9,21 @@ export default function ExpenseForm({ onIncomeAdded }) {
   const [type, setType] = useState("");
   const [cost, setCost] = useState("");
   const [incomeAdd, setIncomeAdd] = useState(false);
+  let uid;
+
+  if (typeof window !== "undefined") {
+    uid = sessionStorage.getItem("UID");
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users/income");
+        const response = await fetch("http://localhost:3001/users/income", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
+          },
+        });
         const data = await response.json();
         console.log("Income fetched data:", data);
         onIncomeAdded(data);
@@ -26,14 +36,20 @@ export default function ExpenseForm({ onIncomeAdded }) {
   }, [incomeAdd]);
 
   async function PostData() {
-    console.log("Hkkk");
     try {
       const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, date, type, cost, category: "income" }),
+        body: JSON.stringify({
+          token: sessionStorage.getItem("UID"),
+          name,
+          date,
+          type,
+          cost,
+          category: "income",
+        }),
       });
       const data = await response.json();
       console.log("data:", data);
@@ -45,12 +61,8 @@ export default function ExpenseForm({ onIncomeAdded }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Format cost to have two decimal places
-    const formattedCost = parseFloat(cost).toFixed(2);
-  
     // form submission logic here
-    console.log("Income:", { name, date, type, cost: formattedCost });
+    console.log("Income:", { name, date, type, cost });
     await PostData();
   };
 
@@ -97,7 +109,7 @@ export default function ExpenseForm({ onIncomeAdded }) {
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(e.target.value)} 
+          onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
           placeholder="0.00"
           min="0"
           step="0.01"

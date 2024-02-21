@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import styles from "../../../_components/History/History.module.scss";
 
@@ -8,11 +8,19 @@ export default function RecentCard({ userId }) {
   useEffect(() => {
     const fetchTopThreeExpenses = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/users/${userId}`);
+        const response = await fetch(
+          "http://localhost:3001/users/top-four-costly-expense",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
+            },
+          }
+        );
         const data = await response.json();
         setTopThreeExpenses(data);
       } catch (error) {
-        console.error("Error fetching top three expenses:", error);
+        console.error("Error fetching top four expenses:", error);
       }
     };
 

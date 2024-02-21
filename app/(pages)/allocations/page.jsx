@@ -7,13 +7,25 @@ import styles from "../_components/Layout/Layout.module.scss";
 import { useEffect, useState } from "react";
 
 export default function Allocations() {
+  const [isVerified, setIsVerified] = useState("");
+
+  useEffect(() => {
+    // Check if the sessionStorage item "verified" is not true
+    if (typeof window !== "undefined") {
+      const verified = sessionStorage.getItem("verified");
+      setIsVerified(verified);
+      if (verified === null) {
+        window.location.href = "/";
+      } else if (verified === "false") {
+        window.location.href = "/verify";
+      }
+    }
+  }, []);
+
   const [expensesData, setExpensesData] = useState([]);
+
   const handleExpenseAdded = (newExpenses) => {
-    console.log("---");
-    console.log("newExpenses:", newExpenses);
     setExpensesData(newExpenses);
-    // setExpensesData((prevExpenses) => [...prevExpenses, newExpenses]);
-    console.log("newExpenses:", newExpenses);
   };
 
   const handleExpenseEdit = (index, editedValues) => {
@@ -23,7 +35,7 @@ export default function Allocations() {
     setExpensesData(updatedExpenses);
   };
 
-  return (
+  return isVerified === "true" ? (
     <main className={styles.mains}>
       <Header />
       <div className={styles.ColRow}>
@@ -37,5 +49,5 @@ export default function Allocations() {
         />
       </div>
     </main>
-  );
+  ) : null;
 }

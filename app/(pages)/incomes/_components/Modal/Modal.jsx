@@ -23,7 +23,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, date, type, cost, category: "income" }),
-        },
+        }
       );
 
       if (!response.ok) {
@@ -34,6 +34,8 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
 
       const updatedExpense = await response.json();
       console.log("Income updated in the database:", updatedExpense);
+
+      window.location.reload();
     } catch (error) {
       console.error("Error updating income:", error);
       // Handle error as needed

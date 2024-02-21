@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import styles from "./TotalCard.module.scss";
 
@@ -10,8 +10,11 @@ export default function TotalCard() {
   useEffect(() => {
     async function fetchTotalIncome() {
       try {
-        const response = await fetch("http://localhost:3001/total-income");
+        const response = await fetch(
+          "http://localhost:3001/users/total-income"
+        );
         const data = await response.json();
+        console.log("KK:", data);
         setTotalIncome(data);
       } catch (error) {
         console.error("Error fetching total income:", error);
@@ -20,7 +23,9 @@ export default function TotalCard() {
 
     async function fetchTotalOutcome() {
       try {
-        const response = await fetch("http://localhost:3001/total-outcome");
+        const response = await fetch(
+          "http://localhost:3001/users/total-outcome"
+        );
         const data = await response.json();
         setTotalOutcome(data);
       } catch (error) {
@@ -30,7 +35,9 @@ export default function TotalCard() {
 
     async function fetchTotalBalance() {
       try {
-        const response = await fetch("http://localhost:3001/total-balance");
+        const response = await fetch(
+          "http://localhost:3001/users/total-balance"
+        );
         const data = await response.json();
         setTotalBalance(data);
       } catch (error) {

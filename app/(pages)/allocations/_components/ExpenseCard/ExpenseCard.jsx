@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import styles from "../../../_components/Transactions/Transactions.module.scss";
 import Image from "next/image";
@@ -36,6 +36,7 @@ export default function ExpenseCard({ expensesData, onExpenseEdit }) {
     } catch (error) {
       console.error("Error while deleting expense", error);
     }
+    window.location.reload();
   };
 
   const handleEditClick = (exp) => {
@@ -72,7 +73,7 @@ export default function ExpenseCard({ expensesData, onExpenseEdit }) {
               <p className={styles.Name}>{expense.name}</p>
               <p className={styles.Type}>{expense.type}</p>
               <p className={styles.Date}>{expense.date}</p>
-              <p className={styles.Amount}>{expense.cost}</p>
+              <p className={styles.Amount}>{expense.cost.toFixed(2)}</p>
             </div>
             <div className={styles.ED_Button}>
               <button

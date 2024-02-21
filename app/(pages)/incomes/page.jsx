@@ -7,23 +7,46 @@ import styles from "../_components/Layout/Layout.module.scss";
 import { useEffect, useState } from "react";
 
 export default function Incomes() {
+  const [isVerified, setIsVerified] = useState(""); // Use state instead of constant
+
+  useEffect(() => {
+    // Check if the sessionStorage item "verified" is not true
+    if (typeof window !== "undefined") {
+      const verified = sessionStorage.getItem("verified");
+      console.log("isVerified:", verified);
+      setIsVerified(verified); // Set the state
+      if (verified === null) {
+        window.location.href = "/";
+      } else if (verified === "false") {
+        console.log("LD");
+        window.location.href = "/verify";
+      }
+    }
+  }, []);
+
   const [incomesData, setIncomesData] = useState([]);
+
   const handleIncomesAdded = (newIncome) => {
     setIncomesData(newIncome);
-    // setExpensesData((prevExpenses) => [...prevExpenses, newExpenses]);
     console.log("newIncome:", newIncome);
   };
 
-  return (
-    <main className={styles.mains}>
-      <Header />
-      <div className={styles.ColRow}>
-        <div className={styles.RowCol}>
-          <TotalCard />
-          <IncomeForm onIncomeAdded={handleIncomesAdded} />
+  // Conditional rendering based on verification status
+  if (isVerified === "true") {
+    // Use state instead of accessing sessionStorage directly
+    return (
+      <main className={styles.mains}>
+        <Header />
+        <div className={styles.ColRow}>
+          <div className={styles.RowCol}>
+            <TotalCard />
+            <IncomeForm onIncomeAdded={handleIncomesAdded} />
+          </div>
+          <IncomeCard incomesData={incomesData} />
         </div>
-        <IncomeCard incomesData={incomesData} />
-      </div>
-    </main>
-  );
+      </main>
+    );
+  } else {
+    return null; // Render nothing if not verified
+  }
 }
