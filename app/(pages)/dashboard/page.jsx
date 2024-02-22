@@ -2,6 +2,8 @@
 import Header from "./_components/Header/Header";
 import TotalCard from "@components/TotalCard/TotalCard";
 import RecentCard from "./_components/RecentCard/RecentCard";
+import OutcomeTypes from "./_components/OutcomeTypes/OutcomeTypes";
+import ExpensesChart from "./_components/ExpenseChart/ExpenseChart";
 import styles from "../_components/Layout/Layout.module.scss";
 import { useEffect, useState } from "react";
 
@@ -24,6 +26,10 @@ export default function Home() {
   return isVerified === "true" ? (
     <main className={styles.mains}>
       <Header />
+      <div className={styles.ColRow}>
+        {/* <ExpensesChart /> */}
+        <OutcomeTypes />
+      </div>
       <div className={styles.ColRow}>
         <TotalCard />
         <RecentCard />

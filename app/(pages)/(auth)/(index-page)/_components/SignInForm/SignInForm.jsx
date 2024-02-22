@@ -47,24 +47,22 @@ export default function SignInForm() {
         </Link>
       </p>
       <br />
-      <label>
+      <label className={styles.label}> Email
         <input
           className={styles.input}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
           required
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Password
         <input
           className={styles.input}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
           required
         />
       </label>
@@ -78,8 +76,9 @@ export default function SignInForm() {
       </p>
       <br />
       <br />
+
       <button className={styles.submit} type="submit">
-        Sign In
+        Sign In 
       </button>
     </form>
   );

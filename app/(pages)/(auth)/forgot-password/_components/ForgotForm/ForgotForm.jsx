@@ -44,22 +44,25 @@ export default function ForgotForm() {
         instructions on how to reset your password.
       </p>
       <br />
-      <label>
+      <label className={styles.label}> Email
         <input
           className={styles.input}
           type="email"
           value={email}
-          onChange={handleEmailChange} // Use the custom handler for email change
-          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
       <br />
       <div className={styles.btnDiv}>
-        {isEmailValid && ( // Render the "Send" button only if email is valid
-          <button type="submit" className={styles.submit}>
+        {isEmailValid && (
+          <Link
+            href="/check-email"
+            className={styles.submit}
+            onClick={handleSend}
+          >
             Send
-          </button>
+          </Link>
         )}
         <Link href="/" className={styles.submit}>
           Back To Login

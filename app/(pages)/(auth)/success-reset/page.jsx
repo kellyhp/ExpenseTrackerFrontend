@@ -36,7 +36,7 @@ export default function Login() {
               />
             </div>
             <br />
-            <p> Password reset successfully</p>
+            <p> Check your email, we've sent a password reset link. </p>
             <br />
             <Link href="/" className={form.submit}>
               Login

@@ -36,7 +36,8 @@ export default function Login() {
               />
             </div>
             <br />
-            <p> Account created successfully</p>
+            <p> Account Created Successfully! </p>
+            <p> Check your email, we've sent a verification link.</p>
             <br />
             <Link href="/" className={form.submit}>
               Login

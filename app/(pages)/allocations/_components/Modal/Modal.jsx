@@ -52,18 +52,18 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
         <div className={styles.modal}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <h3 className={styles.formTitle}>Edit This Expense</h3>
-            <label>
+            <label className={styles.label}> Name
               <input
                 className={styles.input}
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 maxLength={20}
-                placeholder="Name"
+                placeholder="Enter a name"
               />
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Date
               <input
                 className={styles.input}
                 type="date"
@@ -72,7 +72,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Expense Type
               <select
                 className={styles.input}
                 value={type}
@@ -87,7 +87,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               </select>
             </label>
             <br />
-            <label>
+            <label className={styles.label}> Value
               <input
                 className={styles.input}
                 type="number"

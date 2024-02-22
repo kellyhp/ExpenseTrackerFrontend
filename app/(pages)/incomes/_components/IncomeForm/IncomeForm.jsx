@@ -69,7 +69,7 @@ export default function ExpenseForm({ onIncomeAdded }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Income</h3>
-      <label>
+      <label className={styles.label}> Name
         <input
           className={styles.input}
           type="text"
@@ -77,11 +77,10 @@ export default function ExpenseForm({ onIncomeAdded }) {
           required
           onChange={(e) => setName(e.target.value)}
           maxLength={20}
-          placeholder="Name"
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Date
         <input
           className={styles.input}
           type="date"
@@ -91,26 +90,25 @@ export default function ExpenseForm({ onIncomeAdded }) {
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Type
         <input
           className={styles.input}
           type="text"
-          value={name}
+          value={type}
           required
           onChange={(e) => setType(e.target.value)}
           maxLength={15}
-          placeholder="Type"
+          placeholder="Enter Your Type"
         />
       </label>
       <br />
-      <label>
+      <label className={styles.label}> Value
         <input
           className={styles.input}
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
-          placeholder="0.00"
+          onChange={(e) => setCost(e.target.value)} 
           min="0"
           step="0.01"
         />
