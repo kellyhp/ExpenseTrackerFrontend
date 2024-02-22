@@ -7,6 +7,7 @@ import { auth } from "../../../../../../firebase";
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +31,8 @@ export default function SignInForm() {
       // Redirect or perform additional actions after successful sign-in
     } catch (error) {
       console.error("Sign-in error:", error.message);
-      // Handle sign-in error (display error message, etc.)
+      setConfirmPasswordError("Incorrect Password");
+      return;
     }
   };
 
@@ -69,15 +71,17 @@ export default function SignInForm() {
       </label>
       <br />
       <br />
+      {confirmPasswordError && (
+        <p style={{ color: "red" }}>{confirmPasswordError}</p>
+      )}
       <p>
+      <br />
         Forgot Password?{" "}
         <Link className={styles.link} href="/forgot-password">
           Reset Password
         </Link>
       </p>
       <br />
-      <br />
-
       <button className={styles.submit} type="submit">
         Sign In
       </button>
