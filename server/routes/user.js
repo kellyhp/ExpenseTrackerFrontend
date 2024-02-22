@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const moment = require('moment');
 
 router.post("/login", (req, res) => {
   // Authentication
@@ -173,6 +174,83 @@ router.get("/total-balance", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
+
+  // Get types of outcomes and their total value
+  router.get("/outcome-types", async (req, res) => {
+    try {
+      const outcomeTypes = ["food", "academics", "personal care", "housing", "travel", "misc"];
+  
+      const typeTotals = {};
+      for (const type of outcomeTypes) {
+        const total = await User.aggregate([
+          { $match: { category: "expense", type } },
+          { $group: { _id: null, total: { $sum: "$cost" } } },
+        ]);
+        typeTotals[type] = total.length > 0 ? total[0].total : 0;
+      }
+  
+      const totalOutcome = await User.aggregate([
+        { $match: { category: "expense" } },
+        { $group: { _id: null, total: { $sum: "$cost" } } },
+      ]);
+      const totalOutcomeValue = totalOutcome.length > 0 ? totalOutcome[0].total : 0;
+  
+      const percentages = {};
+      for (const type of outcomeTypes) {
+        if (totalOutcomeValue !== 0) {
+          percentages[type] = ((typeTotals[type] / totalOutcomeValue) * 100).toFixed(2);
+        } else {
+          percentages[type] = "0.00";
+        }
+      }
+  
+      res.status(200).json({ outcomeTypes, typeTotals, percentages });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  router.get("/expenses-by-month", async (req, res) => {
+    try {
+ 
+      const startDate = moment().subtract(6, 'months').startOf('month');
+  
+   
+      const expensesByMonth = await User.aggregate([
+        {
+          $match: {
+            category: "expense",
+            date: { $gte: startDate.toDate() } 
+          }
+        },
+        {
+          $group: {
+            _id: { $dateToString: { format: "%Y-%m", date: "$date" } }, // Group by year-month
+            total: { $sum: "$cost" } // calculate
+          }
+        },
+        {
+          $sort: { _id: 1 } // Sort 
+        }
+      ]);
+  
+      // Format  chart.js
+      const labels = [];
+      const data = [];
+      for (const expense of expensesByMonth) {
+        // Parse year-month string to format like 'Jan 2023'
+        const monthName = moment(expense._id, "YYYY-MM").format("MMM YYYY");
+        labels.push(monthName);
+        data.push(expense.total);
+      }
+  
+      res.status(200).json({ labels, data });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  
 });
 
 module.exports = router;
