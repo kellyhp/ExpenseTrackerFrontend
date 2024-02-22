@@ -65,12 +65,15 @@ export default function ExpenseForm({ onExpenseAdded }) {
     // Form submission logic here
     console.log("Expense:", { name, date, type, cost: cost });
     await PostData();
+    window.location.reload();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Expense</h3>
-      <label for="name" className={styles.label}> Name
+      <label for="name" className={styles.label}>
+        {" "}
+        Name
         <input
           className={styles.input}
           type="text"
@@ -81,7 +84,9 @@ export default function ExpenseForm({ onExpenseAdded }) {
         />
       </label>
       <br />
-      <label for="date" className={styles.label}> Date
+      <label for="date" className={styles.label}>
+        {" "}
+        Date
         <input
           className={styles.input}
           type="date"
@@ -91,7 +96,9 @@ export default function ExpenseForm({ onExpenseAdded }) {
         />
       </label>
       <br />
-      <label for="type" className={styles.label}> Expense Type
+      <label for="type" className={styles.label}>
+        {" "}
+        Expense Type
         <select
           className={styles.input}
           required
@@ -111,13 +118,15 @@ export default function ExpenseForm({ onExpenseAdded }) {
         </select>
       </label>
       <br />
-      <label for="cost" className={styles.label}> Value
+      <label for="cost" className={styles.label}>
+        {" "}
+        Value
         <input
           className={styles.input}
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(e.target.value)} 
+          onChange={(e) => setCost(e.target.value)}
           min="0"
           step="0.01"
         />

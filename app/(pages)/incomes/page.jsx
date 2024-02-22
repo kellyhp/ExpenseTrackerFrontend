@@ -19,7 +19,7 @@ export default function Incomes() {
         window.location.href = "/";
       } else if (verified === "false") {
         console.log("LD");
-        window.location.href = "/verify";
+        window.location.href = "/success-create";
       }
     }
   }, []);

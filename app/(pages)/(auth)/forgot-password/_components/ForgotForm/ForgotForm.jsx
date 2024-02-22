@@ -1,20 +1,22 @@
 "use client";
 import styles from "../../../../_components/Form/Form.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth"; // Import Firebase Authentication methods
 
 export default function ForgotForm() {
   const [email, setEmail] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false); // State to track email validity
+  const [successMessage, setSuccessMessage] = useState(""); // State to track success message
 
   const handleSend = (e) => {
-    // console.log("email:", email);
     e.preventDefault();
-    const auth = getAuth();
+    const auth = getAuth(); // Get auth object
     sendPasswordResetEmail(auth, email)
       .then(() => {
         console.log("Password reset email sent.");
+        setSuccessMessage("Password reset email sent."); // Set success message
+        alert("Password reset email sent.");
         // Handle success (e.g., show a success message to the user)
       })
       .catch((error) => {
@@ -44,30 +46,31 @@ export default function ForgotForm() {
         instructions on how to reset your password.
       </p>
       <br />
-      <label className={styles.label}> Email
+      <label className={styles.label}>
+        {" "}
+        Email
         <input
           className={styles.input}
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange} // Use handleEmailChange function
           required
         />
       </label>
       <br />
       <div className={styles.btnDiv}>
         {isEmailValid && (
-          <Link
-            href="/check-email"
-            className={styles.submit}
-            onClick={handleSend}
-          >
+          <button type="submit" className={styles.submit}>
             Send
-          </Link>
+          </button>
         )}
         <Link href="/" className={styles.submit}>
           Back To Login
         </Link>
       </div>
+      {successMessage && (
+        <div className={styles.successMessage}>{successMessage}</div>
+      )}
     </form>
   );
 }

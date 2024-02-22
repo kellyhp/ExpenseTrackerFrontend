@@ -64,12 +64,13 @@ export default function ExpenseForm({ onIncomeAdded }) {
     // form submission logic here
     console.log("Income:", { name, date, type, cost });
     await PostData();
+    window.location.reload();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Income</h3>
-      <label className={styles.label}> Name
+      <label>
         <input
           className={styles.input}
           type="text"
@@ -77,10 +78,11 @@ export default function ExpenseForm({ onIncomeAdded }) {
           required
           onChange={(e) => setName(e.target.value)}
           maxLength={20}
+          placeholder="Name"
         />
       </label>
       <br />
-      <label className={styles.label}> Date
+      <label>
         <input
           className={styles.input}
           type="date"
@@ -90,7 +92,7 @@ export default function ExpenseForm({ onIncomeAdded }) {
         />
       </label>
       <br />
-      <label className={styles.label}> Type
+      <label>
         <input
           className={styles.input}
           type="text"
@@ -98,17 +100,18 @@ export default function ExpenseForm({ onIncomeAdded }) {
           required
           onChange={(e) => setType(e.target.value)}
           maxLength={15}
-          placeholder="Enter Your Type"
+          placeholder="Type"
         />
       </label>
       <br />
-      <label className={styles.label}> Value
+      <label>
         <input
           className={styles.input}
           type="number"
           value={cost}
           required
-          onChange={(e) => setCost(e.target.value)} 
+          onChange={(e) => setCost(Math.max(0, parseFloat(e.target.value)))}
+          placeholder="0.00"
           min="0"
           step="0.01"
         />

@@ -1,7 +1,10 @@
 "use client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth, db } from "../../../../../../firebase";
-import { collection, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 // import Link from "next/link";
 
 // import {
@@ -23,46 +26,51 @@ export default function CreateForm() {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const handleSubmit = async (e) => {
-    console.log("email:", email, "  password:", password);
     e.preventDefault();
-    console.log("HI");
+
+    // Validation logic
     if (password.length < 6) {
       setPasswordError("Password must be at least 6 characters long.");
+      return;
     } else if (password !== confirmPassword) {
       setConfirmPasswordError("Passwords do not match.");
-    } else {
-      setPasswordError("");
-      setConfirmPasswordError("");
-      // Implement your sign-in logic here
-      console.log({ email, password });
+      return;
     }
+
     try {
-      console.log("---");
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      console.log("!!!");
+
+      // Access the user from userCredential
       const user = userCredential.user;
       console.log("User Added:", user);
+
+      // Set user's UID in sessionStorage
       sessionStorage.setItem("UID", user.uid);
-      const docRef = sessionStorage.getItem("UID");
+      const docRef = user.uid;
       console.log("docRef:", docRef);
+
+      // Create user data object
       const userData = {
         name: firstName,
         email: email,
         verified: false,
       };
       sessionStorage.setItem("verified", false);
+
+      // Set user data in Firestore
       await setDoc(doc(db, "users", docRef), userData);
       console.log("Document written with ID: ", docRef);
+
+      // If successful, you can redirect the user
+      window.location.href = "/success-create";
     } catch (err) {
       console.log("err:", err);
     }
-    console.log("Bye1");
-    window.location.href = "/success-create";
-    console.log("k11");
   };
 
   return (
@@ -82,7 +90,6 @@ export default function CreateForm() {
           type="text"
           value={firstName}
           onChange={(e) => setfirstName(e.target.value)}
-
           required
         />
       </label>
@@ -94,7 +101,6 @@ export default function CreateForm() {
           type="text"
           value={lastName}
           onChange={(e) => setlastName(e.target.value)}
-
           required
         />
       </label>
@@ -131,12 +137,14 @@ export default function CreateForm() {
           required
         />
       </label>
-      <br/>
+      <br />
       {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
-      {confirmPasswordError && <p style={{ color: "red" }}>{confirmPasswordError}</p>}
+      {confirmPasswordError && (
+        <p style={{ color: "red" }}>{confirmPasswordError}</p>
+      )}
       <br />
       <button className={styles.submit} type="submit">
-        <Link href="/create-account"> Create Account </Link>
+        Create Account
       </button>
     </form>
   );

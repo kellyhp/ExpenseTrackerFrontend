@@ -9,31 +9,28 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    if (sessionStorage.getItem("verified") === "false") {
-      window.location.reload();
-    } else {
-      e.preventDefault();
-      // Implement your sign-in logic here
-      console.log({ email, password });
+    e.preventDefault();
+    // Implement your sign-in logic here
+    console.log({ email, password });
 
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        const user = userCredential.user;
-        console.log("Signed in user:", user);
-        console.log("Uid:", user.uid);
-        if (user.uid) {
-          sessionStorage.setItem("UID", user.uid);
-          window.location.href = "/dashboard";
-        }
-        // Redirect or perform additional actions after successful sign-in
-      } catch (error) {
-        console.error("Sign-in error:", error.message);
-        // Handle sign-in error (display error message, etc.)
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("Signed in user:", user);
+      console.log("Uid:", user.uid);
+      if (user.uid) {
+        sessionStorage.setItem("UID", user.uid);
+        sessionStorage.setItem("verified", user.emailVerified);
+        window.location.href = "/dashboard";
       }
+      // Redirect or perform additional actions after successful sign-in
+    } catch (error) {
+      console.error("Sign-in error:", error.message);
+      // Handle sign-in error (display error message, etc.)
     }
   };
 
@@ -47,7 +44,9 @@ export default function SignInForm() {
         </Link>
       </p>
       <br />
-      <label className={styles.label}> Email
+      <label className={styles.label}>
+        {" "}
+        Email
         <input
           className={styles.input}
           type="email"
@@ -57,7 +56,9 @@ export default function SignInForm() {
         />
       </label>
       <br />
-      <label className={styles.label}> Password
+      <label className={styles.label}>
+        {" "}
+        Password
         <input
           className={styles.input}
           type="password"
@@ -78,7 +79,7 @@ export default function SignInForm() {
       <br />
 
       <button className={styles.submit} type="submit">
-        Sign In 
+        Sign In
       </button>
     </form>
   );

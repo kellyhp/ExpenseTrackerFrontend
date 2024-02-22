@@ -17,7 +17,7 @@ export default function Allocations() {
       if (verified === null) {
         window.location.href = "/";
       } else if (verified === "false") {
-        window.location.href = "/verify";
+        window.location.href = "/success-create";
       }
     }
   }, []);
