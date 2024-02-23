@@ -68,8 +68,10 @@ export default function IncomeCard({ incomesData }) {
             <div className={styles.ColRow}>
               <p className={styles.Name}>{income.name}</p>
               <p className={styles.Type}>{income.type}</p>
+            </div>
+            <div className={styles.ColRow}>
               <p className={styles.Date}>{income.date}</p>
-              <p className={styles.Amount}>{income.cost}</p>
+              <p className={styles.Amount}>{income.cost.toFixed(2)}</p>
             </div>
             <div className={styles.ED_Button}>
               <button

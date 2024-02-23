@@ -27,7 +27,7 @@ export default function Home() {
     <main className={styles.mains}>
       <Header />
       <div className={styles.ColRow}>
-        {/* <ExpensesChart /> */}
+        <ExpensesChart />
         <OutcomeTypes />
       </div>
       <div className={styles.ColRow}>

@@ -7,6 +7,7 @@
   --secondary: #e7c6f9;
   --light-background: #ffffff;
   --dark-background: #0d303b;
+  --progress: #F1F1F1;
 
   --text-dark: #404040;
   --text-light: #c7c7c7;
@@ -15,6 +16,14 @@
   --blue: #197bbd;
   --green: #439a86;
   --red: #bb4430;
+
+  --food: #FCAE73;
+  --academics: #209D43;
+  --personal: #8C1A11;
+  --housing: #312070;
+  --travel: #70A6E8;
+  --misc: #6A2346;
+
 
   --b-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
     0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.06);
@@ -52,6 +61,9 @@ a {
 
 h1 {
   font-size: 3rem;
+  @include mixins.tablet {
+    font-size: 2rem;
+  }
 }
 h2 {
   font-size: 2.5rem;

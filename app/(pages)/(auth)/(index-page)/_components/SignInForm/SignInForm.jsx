@@ -28,7 +28,6 @@ export default function SignInForm() {
         sessionStorage.setItem("verified", user.emailVerified);
         window.location.href = "/dashboard";
       }
-      // Redirect or perform additional actions after successful sign-in
     } catch (error) {
       console.error("Sign-in error:", error.message);
       setConfirmPasswordError("Incorrect Password");

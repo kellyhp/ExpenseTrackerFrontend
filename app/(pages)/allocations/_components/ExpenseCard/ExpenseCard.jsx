@@ -72,6 +72,8 @@ export default function ExpenseCard({ expensesData, onExpenseEdit }) {
             <div className={styles.ColRow}>
               <p className={styles.Name}>{expense.name}</p>
               <p className={styles.Type}>{expense.type}</p>
+            </div>
+            <div className={styles.ColRow}>
               <p className={styles.Date}>{expense.date}</p>
               <p className={styles.Amount}>{expense.cost.toFixed(2)}</p>
             </div>

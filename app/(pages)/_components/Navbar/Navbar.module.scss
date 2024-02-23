@@ -14,8 +14,9 @@ $scale: 1.04;
 }
 
 .hello {
-  margin-top: 17%;
-  margin-bottom: 17%;
+  margin-top: 14%;
+  margin-bottom: 14%;
+  padding: 3%;
   @include mixins.tablet {
     display: none;
   }

@@ -29,7 +29,7 @@ export default function RecentCard({ userId }) {
 
   return (
     <div className={styles.container}>
-      <h4>Transactions History</h4>
+      <h4>Top Transactions</h4>
       <div className={styles.titles}>
         <p className={styles.spaceName}> Name </p>
         <p className={styles.spaceType}> Type </p>

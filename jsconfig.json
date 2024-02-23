@@ -6,7 +6,7 @@
       "@components/*": ["app/(pages)/_components/*"],
       "@data/*": ["app/(pages)/_data/*"],
       "@hooks/*": ["app/(pages)/_hooks/*"],
-      "@utils/*": ["app/(api)/_utils/*"]
+      "@utils/*": ["app/(api)/_routes/*"]
     }
   }
 }

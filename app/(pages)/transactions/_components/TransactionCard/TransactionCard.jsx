@@ -41,7 +41,7 @@ export default function TransactionCard() {
             <p className={styles.Name}> {expense.name} </p>
             <p className={styles.Type}> {expense.type} </p>
             <p className={styles.Date}> {expense.date} </p>
-            <p className={styles.Amount}> {expense.cost} </p>
+            <p className={styles.Amount}> {expense.cost.toFixed(2)} </p>
           </div>
         </>
       ))}

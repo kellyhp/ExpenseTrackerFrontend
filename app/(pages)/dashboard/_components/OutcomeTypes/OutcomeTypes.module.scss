@@ -1,0 +1,86 @@
+@use "app/(pages)/_globals/mixins";
+
+.container{
+    height:fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.outcomeType{
+    display: flex;
+    flex-direction: column;
+}
+
+.typeList{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    gap: 3%;   
+}
+
+.typeItem{
+    display: flex;
+    flex-direction: column;
+}
+
+.progressBar{
+    background-color: var(--progress);
+    width: 360px;
+    height: 9px;
+    border-radius: var(--f-radius);
+    margin-bottom: 2%;
+    @include mixins.tablet {
+        width: 250px;
+    }
+}
+.label{
+    color: var(--text-secondary);
+}
+
+.progressFood{
+    background-color: var(--food);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+.progressAcademics{
+    background-color: var(--academics);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+.progressPersonal{
+    background-color: var(--personal);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+.progressHousing{
+    background-color: var(--housing);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+.progressTravel{
+    background-color: var(--travel);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+.progressMisc{
+    background-color: var(--misc);
+    border-radius: var(--f-radius);
+    height: 9px;
+}
+
+.percentage{
+    font-size: 24px;
+    font-family: var(--font-quicksand);
+    font-weight: 600;
+    color: var(--text-secondary);
+    @include mixins.tablet {
+        font-size: 18px;
+    }
+}

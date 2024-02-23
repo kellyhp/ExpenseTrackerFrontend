@@ -1,0 +1,20 @@
+@use "app/(pages)/_globals/mixins";
+
+
+.chartContainer{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--b-radius);
+    box-shadow: var(--b-shadow);
+    padding: 30px 30px;
+    border-radius: var(--b-radius);
+    width: 450px;
+    height: 300px;
+    height: fit-content;
+    @include mixins.tablet {
+        display: none;
+    }
+}
+

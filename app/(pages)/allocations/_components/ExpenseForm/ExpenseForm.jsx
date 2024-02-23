@@ -111,7 +111,7 @@ export default function ExpenseForm({ onExpenseAdded }) {
           </option>
           <option value="food">Food</option>
           <option value="academics">Academics</option>
-          <option value="personal-care">Personal Care</option>
+          <option value="personal care">Personal Care</option>
           <option value="housing">Housing</option>
           <option value="travel">Travel</option>
           <option value="misc">Misc</option>

@@ -5,13 +5,6 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../../../../../../firebase";
 import { setDoc, doc } from "firebase/firestore";
-// import Link from "next/link";
-
-// import {
-//   createUserWithEmailAndPassword,
-//   sendEmailVerification,
-//   updateProfile,
-// } from "firebase/auth";
 import styles from "../../../../_components/Form/Form.module.scss";
 import { useState } from "react";
 import Link from "next/link";

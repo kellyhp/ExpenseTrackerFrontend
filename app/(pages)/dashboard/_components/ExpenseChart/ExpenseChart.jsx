@@ -1,68 +1,73 @@
-import { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './ExpenseChart.module.scss';
 import Chart from 'chart.js/auto';
-import moment from 'moment';
 
-export default function ExpensesChart({ data }) {
-  const chartContainer = useRef(null);
+const ExpenseChart = () => {
+  const [chartData, setChartData] = useState(null);
+  const chartContainerRef = useRef(null);
+  const chartInstance = useRef(null);
 
   useEffect(() => {
-    
-    const ctx = chartContainer.current.getContext('2d');
-    const myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: data.labels,
-        datasets: [{
-          label: 'Total Expenses',
-          data: data.data,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'time',
-            time: {
-              unit: 'month',
-              displayFormats: {
-                month: 'MMM YYYY'
+    if (chartData) {
+      if (chartInstance.current) {
+        chartInstance.current.destroy(); // Destroy the previous chart instance
+      }
+      
+      const ctx = chartContainerRef.current.getContext('2d');
+      chartInstance.current = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: chartData.labels,
+          datasets: [{
+            label: 'Total Expenses',
+            data: chartData.data,
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Daily Expenses'
               }
             },
-            title: {
-              display: true,
-              text: 'Month'
+            x: {
+              title: {
+                display: true,
+                text: 'Days'
+              }
             }
           },
-          y: {
-            title: {
-              display: true,
-              text: 'Total Expenses'
-            }
-          }
+          plugins: {
+            legend: {
+              onClick: () => {}, // Disable legend interactivity
+            },
+          },
         }
-      }
-    });
+      });
+    }
+  }, [chartData]);
 
-    return () => {
-      myChart.destroy();
-    };
-  }, [data]);
+  useEffect(() => {
+    fetch('http://localhost:3001/users/expenses-by-week')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Chart data:", data);
+        setChartData(data);
+      })
+      .catch((error) => console.error("Error fetching expense data:", error));
+  }, []);
 
   return (
-    <canvas ref={chartContainer} />
+    <div className={styles.chartContainer}>
+      <h2 className={styles.chartHeader}></h2>
+      <canvas height="300px" width="400px" ref={chartContainerRef} id="expenseChart"></canvas>
+    </div>
   );
-}
+};
 
-export async function getServerSideProps(context) {
- 
-  const res = await fetch('http://localhost:3001/users/expenses-by-month');
-  const data = await res.json();
-
-  return {
-    props: {
-      data
-    }
-  };
-}
+export default ExpenseChart;
