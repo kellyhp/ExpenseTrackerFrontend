@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../_models/user");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const moment = require('moment');
+const moment = require("moment");
 
 router.post("/login", (req, res) => {
   // Authentication
@@ -42,7 +42,7 @@ router.get("/top-four-costly-expense", async (req, res) => {
       token: req.headers.authorization.split(" ")[1],
       category: "expense",
     })
-      .sort({ cost: -1 }) 
+      .sort({ cost: -1 })
       .limit(4);
 
     res.json(topThreeCostlyObjects);
@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
 
   try {
     const result = await user.save();
-    console.log("Saved user:", result); 
+    console.log("Saved user:", result);
     res.json(result);
   } catch (error) {
     res.send(`Some error occured => ${error}`);
@@ -96,7 +96,7 @@ router.put("/:id", async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       id,
       { name, type, date, cost, category },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedUser) {
@@ -112,7 +112,6 @@ router.put("/:id", async (req, res) => {
 
 // income
 router.get("/total-income", async (req, res) => {
-
   try {
     const totalIncome = await User.aggregate([
       {
@@ -120,7 +119,7 @@ router.get("/total-income", async (req, res) => {
           token: req.headers.authorization.split(" ")[1],
           category: "income",
         },
-      }, 
+      },
       { $group: { _id: null, total: { $sum: "$cost" } } },
     ]);
 
@@ -237,19 +236,26 @@ router.get("/outcome-types", async (req, res) => {
 router.get("/expenses-by-week", async (req, res) => {
   try {
     const today = moment();
-    const startDate = today.clone().startOf('week');
-    const endDate = today.clone().endOf('week');
+    const startDate = today.clone().startOf("week");
 
-    const labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const labels = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const data = Array(7).fill(0);
 
     const allExpenses = await User.find({ category: "expense" });
 
     for (let i = 0; i < 7; i++) {
-      const currentDate = startDate.clone().add(i, 'days').format('YYYY-MM-DD');
+      const currentDate = startDate.clone().add(i, "days").format("YYYY-MM-DD");
 
-      const expensesForDay = allExpenses.filter(expense => {
-        return moment(expense.date).format('YYYY-MM-DD') === currentDate;
+      const expensesForDay = allExpenses.filter((expense) => {
+        return moment(expense.date).format("YYYY-MM-DD") === currentDate;
       });
 
       const totalExpensesForDay = expensesForDay.reduce((total, expense) => {
@@ -265,6 +271,5 @@ router.get("/expenses-by-week", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 module.exports = router;

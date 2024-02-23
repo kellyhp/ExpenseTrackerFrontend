@@ -18,7 +18,7 @@ export default function SignInForm() {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       const user = userCredential.user;
       console.log("Signed in user:", user);
@@ -74,7 +74,7 @@ export default function SignInForm() {
         <p style={{ color: "red" }}>{confirmPasswordError}</p>
       )}
       <p>
-      <br />
+        <br />
         Forgot Password?{" "}
         <Link className={styles.link} href="/forgot-password">
           Reset Password

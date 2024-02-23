@@ -25,7 +25,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, date, type, cost, category: "expense" }),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -52,7 +52,9 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
         <div className={styles.modal}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <h3 className={styles.formTitle}>Edit This Expense</h3>
-            <label className={styles.label}> Name
+            <label className={styles.label}>
+              {" "}
+              Name
               <input
                 className={styles.input}
                 type="text"
@@ -63,7 +65,9 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label className={styles.label}> Date
+            <label className={styles.label}>
+              {" "}
+              Date
               <input
                 className={styles.input}
                 type="date"
@@ -72,7 +76,9 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               />
             </label>
             <br />
-            <label className={styles.label}> Expense Type
+            <label className={styles.label}>
+              {" "}
+              Expense Type
               <select
                 className={styles.input}
                 value={type}
@@ -87,7 +93,9 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
               </select>
             </label>
             <br />
-            <label className={styles.label}> Value
+            <label className={styles.label}>
+              {" "}
+              Value
               <input
                 className={styles.input}
                 type="number"

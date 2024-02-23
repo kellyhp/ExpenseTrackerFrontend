@@ -2,19 +2,7 @@
   "extends": ["next/core-web-vitals"],
   "plugins": ["lit-a11y", "prettier"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "bracketSpacing": true,
-        "tabWidth": 2,
-        "printWidth": 80,
-        "useTabs": false,
-        "trailingComma": "es5",
-        "endOfLine": "auto",
-        "semi": true,
-        "singleQuote": true
-      }
-    ],
+    "prettier/prettier": [0],
     "lit-a11y/alt-text": [2],
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",

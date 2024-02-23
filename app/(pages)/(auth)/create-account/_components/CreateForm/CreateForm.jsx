@@ -35,7 +35,7 @@ export default function CreateForm() {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
 
       // Access the user from userCredential

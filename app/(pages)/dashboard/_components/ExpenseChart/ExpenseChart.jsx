@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from './ExpenseChart.module.scss';
-import Chart from 'chart.js/auto';
+import React, { useState, useEffect, useRef } from "react";
+import styles from "./ExpenseChart.module.scss";
+import Chart from "chart.js/auto";
 
 const ExpenseChart = () => {
   const [chartData, setChartData] = useState(null);
@@ -12,19 +12,21 @@ const ExpenseChart = () => {
       if (chartInstance.current) {
         chartInstance.current.destroy(); // Destroy the previous chart instance
       }
-      
-      const ctx = chartContainerRef.current.getContext('2d');
+
+      const ctx = chartContainerRef.current.getContext("2d");
       chartInstance.current = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
           labels: chartData.labels,
-          datasets: [{
-            label: 'Total Expenses',
-            data: chartData.data,
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1,
-          }]
+          datasets: [
+            {
+              label: "Total Expenses",
+              data: chartData.data,
+              backgroundColor: "rgba(54, 162, 235, 0.5)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           scales: {
@@ -32,28 +34,28 @@ const ExpenseChart = () => {
               beginAtZero: true,
               title: {
                 display: true,
-                text: 'Daily Expenses'
-              }
+                text: "Daily Expenses",
+              },
             },
             x: {
               title: {
                 display: true,
-                text: 'Days'
-              }
-            }
+                text: "Days",
+              },
+            },
           },
           plugins: {
             legend: {
               onClick: () => {}, // Disable legend interactivity
             },
           },
-        }
+        },
       });
     }
   }, [chartData]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/users/expenses-by-week')
+    fetch("http://localhost:3001/users/expenses-by-week")
       .then((response) => response.json())
       .then((data) => {
         console.log("Chart data:", data);
@@ -65,7 +67,12 @@ const ExpenseChart = () => {
   return (
     <div className={styles.chartContainer}>
       <h2 className={styles.chartHeader}></h2>
-      <canvas height="300px" width="400px" ref={chartContainerRef} id="expenseChart"></canvas>
+      <canvas
+        height="300px"
+        width="400px"
+        ref={chartContainerRef}
+        id="expenseChart"
+      ></canvas>
     </div>
   );
 };

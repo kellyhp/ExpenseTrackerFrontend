@@ -59,18 +59,18 @@ export default function Login() {
                         setDoc(
                           doc(db, "users", docRef),
                           { verified: true },
-                          { merge: true }
+                          { merge: true },
                         )
                           .then(() =>
                             console.log(
-                              "Firestore document updated with 'verified' field set to true"
-                            )
+                              "Firestore document updated with 'verified' field set to true",
+                            ),
                           )
                           .catch((error) =>
                             console.error(
                               "Error updating Firestore document:",
-                              error
-                            )
+                              error,
+                            ),
                           );
                       }
                     }

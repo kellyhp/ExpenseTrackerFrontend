@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"node app/index.js\"",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build && concurrently \"next start\" \"node app/index.js\"",
+    "start": "concurrently \"next start\" \"node app/index.js\"",
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",

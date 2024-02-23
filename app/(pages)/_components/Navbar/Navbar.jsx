@@ -49,26 +49,27 @@ export default function Navbar({ navLinks }) {
           <div className={`${styles.links} ${active ? styles.active : null}`}>
             {navLinks.map((link) => (
               <Link
-              key={link.slug}
-              href={link.slug}
-              onClick={() =>
-                link.name === "Sign Out" ? handleSignOut() : setInactive()
-                //                                                      ^^
-              }
-            >
-              <div className={styles.link}>
-                {link.image && (
-                  <Image
-                    className={styles.linkImage}
-                    src={link.image}
-                    width={30}
-                    height={30}
-                    alt={link.name}
-                  />
-                )}
-                {link.name}
-              </div>
-            </Link>
+                key={link.slug}
+                href={link.slug}
+                onClick={
+                  () =>
+                    link.name === "Sign Out" ? handleSignOut() : setInactive()
+                  //                                                      ^^
+                }
+              >
+                <div className={styles.link}>
+                  {link.image && (
+                    <Image
+                      className={styles.linkImage}
+                      src={link.image}
+                      width={30}
+                      height={30}
+                      alt={link.name}
+                    />
+                  )}
+                  {link.name}
+                </div>
+              </Link>
             ))}
           </div>
           <button className={styles.menu} onClick={toggleActive}>

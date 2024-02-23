@@ -15,7 +15,7 @@ export default function RecentCard({ userId }) {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
             },
-          }
+          },
         );
         const data = await response.json();
         setTopThreeExpenses(data);

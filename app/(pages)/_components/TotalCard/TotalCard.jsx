@@ -18,7 +18,7 @@ export default function TotalCard() {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
             },
-          }
+          },
         );
         const data = await response.json();
         console.log("KK:", data);
@@ -37,7 +37,7 @@ export default function TotalCard() {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
             },
-          }
+          },
         );
         const data = await response.json();
         setTotalOutcome(data);
@@ -55,7 +55,7 @@ export default function TotalCard() {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
             },
-          }
+          },
         );
         const data = await response.json();
         setTotalBalance(data);
