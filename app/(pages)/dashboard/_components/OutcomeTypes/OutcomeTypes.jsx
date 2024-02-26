@@ -12,14 +12,24 @@ const OutcomeTypes = () => {
   const [outcomeData, setOutcomeData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/users/outcome-types")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Outcome data:", data); // Log the response data
-        setOutcomeData(data);
-      })
-      .catch((error) => console.error("Error fetching outcome types:", error));
+    fetchOutcomeData();
   }, []);
+
+  const fetchOutcomeData = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/users/outcome-types", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
+        },
+      });
+      const data = await response.json();
+      console.log("Outcome data:", data); // Log the response data
+      setOutcomeData(data);
+    } catch (error) {
+      console.error("Error fetching outcome types:", error);
+    }
+  };
 
   return (
     <div className={styles.container}>

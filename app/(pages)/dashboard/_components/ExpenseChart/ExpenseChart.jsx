@@ -55,14 +55,32 @@ const ExpenseChart = () => {
   }, [chartData]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/users/expenses-by-week")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchExpenseData = async () => {
+      try {
+        const uid = sessionStorage.getItem("UID");
+        if (!uid) return; // If UID is not available, exit early
+  
+        const response = await fetch("http://localhost:3001/users/expenses-by-week", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${uid}`,
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+  
+        const data = await response.json();
         console.log("Chart data:", data);
         setChartData(data);
-      })
-      .catch((error) => console.error("Error fetching expense data:", error));
-  }, []);
+      } catch (error) {
+        console.error("Error fetching expense data:", error);
+      }
+    };
+  
+    fetchExpenseData();
+  }, []); // Dependency array to run effect only once on component mount
 
   return (
     <div className={styles.chartContainer}>
