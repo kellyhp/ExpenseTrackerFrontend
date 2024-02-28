@@ -1,17 +1,18 @@
+require('dotenv').config();
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const userRouter = require("./(api)/routes/user");
 const PORT = 3001;
 const cors = require("cors");
 const connectionString =
-  "mongodb+srv://khphan:testtry@balance.rpjud8f.mongodb.net/TestAPiDb";
+  "mongodb+srv://khphan:password1029@balance.rpjud8f.mongodb.net/TestAPiDb";
 
 const app = express();
 
 app.use(cors());
 async function connect() {
   try {
-    await mongoose.connect(connectionString);
+    await mongoose.connect(process.env.CONNECTION_STRING);
     console.log("Connection with Mongo DB");
   } catch (error) {
     console.log(`Error -> ${error}`);
