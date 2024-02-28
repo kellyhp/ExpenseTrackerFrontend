@@ -18,7 +18,7 @@ function Modal({ isOpen, onClose, onSave, initialData }) {
     try {
       // Make a PUT request to update the expense in the database
       const response = await fetch(
-        `http://localhost:3001/users/${initialData._id}`,
+        `https://expensetracker-dz2s.onrender.com/users/${initialData._id}`,
         {
           method: "PUT",
           headers: {

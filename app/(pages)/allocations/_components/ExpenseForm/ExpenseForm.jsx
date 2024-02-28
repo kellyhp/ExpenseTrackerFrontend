@@ -13,7 +13,7 @@ export default function ExpenseForm({ onExpenseAdded }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users", {
+        const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("UID")}`,
@@ -34,7 +34,7 @@ export default function ExpenseForm({ onExpenseAdded }) {
   async function PostData() {
     console.log("Hkkk");
     try {
-      const response = await fetch("http://localhost:3001/users", {
+      const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

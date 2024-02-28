@@ -7,7 +7,7 @@ export default function TransactionCard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users", {
+        const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("UID")}`,

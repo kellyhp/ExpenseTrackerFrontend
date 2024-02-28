@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"node app/index.js\"",
-    "build": "next build && concurrently \"next start\" \"node app/index.js\"",
-    "start": "concurrently \"next start\" \"node app/index.js\"",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },

@@ -12,7 +12,7 @@ export default function TotalCard() {
     async function fetchTotalIncome() {
       try {
         const response = await fetch(
-          `http://localhost:3001/users/total-income`,
+          `https://expensetracker-dz2s.onrender.com/users/total-income`,
           {
             method: "GET",
             headers: {
@@ -31,7 +31,7 @@ export default function TotalCard() {
     async function fetchTotalOutcome() {
       try {
         const response = await fetch(
-          `http://localhost:3001/users/total-outcome`,
+          `https://expensetracker-dz2s.onrender.com/users/total-outcome`,
           {
             method: "GET",
             headers: {
@@ -49,7 +49,7 @@ export default function TotalCard() {
     async function fetchTotalBalance() {
       try {
         const response = await fetch(
-          `http://localhost:3001/users/total-balance`,
+          `https://expensetracker-dz2s.onrender.com/users/total-balance`,
           {
             method: "GET",
             headers: {

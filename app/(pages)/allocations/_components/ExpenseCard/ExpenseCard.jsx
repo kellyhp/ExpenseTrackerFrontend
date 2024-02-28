@@ -18,7 +18,7 @@ export default function ExpenseCard({ expensesData, onExpenseEdit }) {
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${id}`, {
+      const response = await fetch(`https://expensetracker-dz2s.onrender.com/users/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
