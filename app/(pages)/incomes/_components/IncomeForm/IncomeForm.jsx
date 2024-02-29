@@ -37,7 +37,7 @@ export default function ExpenseForm({ onIncomeAdded }) {
 
   async function PostData() {
     try {
-      const response = await fetch("http://localhost:3001/users", {
+      const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,9 @@ export default function ExpenseForm({ onIncomeAdded }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.formTitle}>Income</h3>
-      <label>
+      <label for="name" className={styles.label}>
+        {" "}
+        Name
         <input
           className={styles.input}
           type="text"
@@ -82,7 +84,9 @@ export default function ExpenseForm({ onIncomeAdded }) {
         />
       </label>
       <br />
-      <label>
+      <label for="date" className={styles.label}>
+        {" "}
+        Date
         <input
           className={styles.input}
           type="date"
@@ -92,7 +96,9 @@ export default function ExpenseForm({ onIncomeAdded }) {
         />
       </label>
       <br />
-      <label>
+      <label for="type" className={styles.label}>
+        {" "}
+        Income Type
         <input
           className={styles.input}
           type="text"
@@ -104,7 +110,9 @@ export default function ExpenseForm({ onIncomeAdded }) {
         />
       </label>
       <br />
-      <label>
+      <label for="cost" className={styles.label}>
+        {" "}
+        Value
         <input
           className={styles.input}
           type="number"

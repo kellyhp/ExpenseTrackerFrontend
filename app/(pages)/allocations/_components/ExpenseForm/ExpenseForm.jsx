@@ -32,7 +32,6 @@ export default function ExpenseForm({ onExpenseAdded }) {
   }, [expenseAdd]);
 
   async function PostData() {
-    console.log("Hkkk");
     try {
       const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
         method: "POST",
