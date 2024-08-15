@@ -9,7 +9,7 @@ export default function RecentCard({ userId }) {
     const fetchTopThreeExpenses = async () => {
       try {
         const response = await fetch(
-          "https://expensetracker-dz2s.onrender.com/users/top-four-costly-expense",
+          `https://expensetracker-dz2s.onrender.com/users/top-four-costly-expense`,
           {
             method: "GET",
             headers: {

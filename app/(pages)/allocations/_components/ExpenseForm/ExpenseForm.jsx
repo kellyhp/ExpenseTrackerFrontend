@@ -13,7 +13,7 @@ export default function ExpenseForm({ onExpenseAdded }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://expensetracker-dz2s.onrender.com/users", {
+        const response = await fetch(`https://expensetracker-dz2s.onrender.com/users`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("UID")}`,

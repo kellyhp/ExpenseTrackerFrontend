@@ -60,7 +60,7 @@ const ExpenseChart = () => {
         const uid = sessionStorage.getItem("UID");
         if (!uid) return; // If UID is not available, exit early
   
-        const response = await fetch("https://expensetracker-dz2s.onrender.com/users/expenses-by-week", {
+        const response = await fetch(`https://expensetracker-dz2s.onrender.com/users/expenses-by-week`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${uid}`,
