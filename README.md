@@ -14,20 +14,6 @@ The architecture of the project is structured as follows:
 - **Authentication:** Firebase Authentication handles user sign-in, sign-out, account creation, and password recovery.
 - **Database:** MongoDB is used to store all user data related to expenses and other relevant information.
 
-### Diagram
-|-- Frontend (Next.js + React)
-|   |-- Components
-|   |-- Pages
-|   |-- Chart.js (Data Visualization)
-|
-|-- Backend (Node.js + Express)
-|   |-- API Endpoints (CRUD Operations)
-|   |-- MongoDB (Data Storage)
-|
-|-- Authentication (Firebase)
-|   |-- User Management
-|   |-- Password Recovery your node version to roughly v21.1.0 so you don't get random warnings.
-
 ## Technologies Used
 
 - **Next.js**
