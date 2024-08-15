@@ -3,7 +3,7 @@
 ## Overview
 This project is a full-stack Expense Tracker application that enables users to manage their expenses effectively. The application includes features such as user authentication, expense tracking, data visualization, and more. Firebase handles user authentication, MongoDB stores the data, and Next.js along with React and Chart.js powers the front end.
 
-# Link to frontend
+# Link to backend
 [Backend](https://github.com/kellyhp/ExpenseTracker)
 
 ## Architecture
